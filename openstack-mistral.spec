@@ -62,7 +62,7 @@ Requires:       python-six >= 1.9.0
 Requires:       python-sqlalchemy >= 0.9.9 , python-sqlalchemy < 1.1.0
 Requires:       python-stevedore >= 1.5.0
 Requires:       python-wsme >= 0.7
-Requires:       python2-yaql
+Requires:       python2-yaql >= 1.0.0
 Requires:       python-tooz >= 1.19.0
 
 %description -n python-%{name}
@@ -191,6 +191,13 @@ install -p -D -m 640 etc/wf_trace_logging.conf.sample \
 install -p -D -m 640 tools/sync_db.py \
                      %{buildroot}/usr/bin/mistral-db-sync
 chmod +x %{buildroot}/usr/bin/mistral*
+
+install -p -D -m 644 ./mistral/actions/openstack/mapping.json %{buildroot}%{python2_sitelib}/%{service}/actions/openstack/mapping.json
+install -p -D -m 644 ./mistral/db/sqlalchemy/migration/alembic.ini %{buildroot}%{python2_sitelib}/%{service}/db/sqlalchemy/migration/alembic.ini
+mkdir -p %{buildroot}/%{python2_sitelib}/%{service}/resources/workflows/
+mkdir -p %{buildroot}/%{python2_sitelib}/%{service}/resources/actions/
+install -p -D -m 644 ./mistral/resources/workflows/* %{buildroot}/%{python2_sitelib}/%{service}/resources/workflows/
+install -p -D -m 644 ./mistral/resources/actions/* %{buildroot}/%{python2_sitelib}/%{service}/resources/actions/
 
 %pre common
 USERNAME=mistral
