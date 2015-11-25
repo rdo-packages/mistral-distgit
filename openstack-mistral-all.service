@@ -1,0 +1,11 @@
+[Unit]
+Description=Mistral Server Running API, Engine, Executor
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=mistral
+ExecStart=/usr/bin/mistral-server --config-file=/etc/mistral/mistral.conf --server=api,engine,executor
+
+[Install]
+WantedBy=multi-user.target
