@@ -11,6 +11,7 @@ Source0:        http://tarballs.openstack.org/%{service}/%{service}-master.tar.g
 Source10:       openstack-mistral-api.service
 Source11:       openstack-mistral-engine.service
 Source12:       openstack-mistral-executor.service
+Source13:       openstack-mistral-all.service
 
 BuildArch:      noarch
 
@@ -127,6 +128,18 @@ OpenStack Mistral Executor service.
 This package contains the mistral executor, which is one of core services of
 mistral, and which the API servers will use.
 
+%package        all
+
+Summary: OpenStack Mistral Executor daemon
+
+Requires:       %{name}-common = %{version}-%{release}
+
+%description    all
+OpenStack Mistral All service.
+.
+This package contains the mistral api, engine, and executor service as
+an all-in-one process.
+
 
 %package        doc
 
@@ -181,6 +194,7 @@ mkdir -p %{buildroot}/var/run/mistral
 install -p -D -m 644 %SOURCE10 %{buildroot}%{_unitdir}/openstack-mistral-api.service
 install -p -D -m 644 %SOURCE11 %{buildroot}%{_unitdir}/openstack-mistral-engine.service
 install -p -D -m 644 %SOURCE12 %{buildroot}%{_unitdir}/openstack-mistral-executor.service
+install -p -D -m 644 %SOURCE13 %{buildroot}%{_unitdir}/openstack-mistral-all.service
 
 install -p -D -m 640 etc/mistral.conf.sample \
                      %{buildroot}%{_sysconfdir}/mistral/mistral.conf
@@ -234,6 +248,13 @@ rm -rf %{buildroot}
 %postun executor
 %systemd_postun_with_restart openstack-mistral-executor.service
 
+%post all
+%systemd_post openstack-mistral-all.service
+%preun all
+%systemd_preun openstack-mistral-all.service
+%postun all
+%systemd_postun_with_restart openstack-mistral-all.service
+
 %files api
 %config(noreplace) %attr(-, root, root) %{_unitdir}/openstack-mistral-api.service
 
@@ -253,6 +274,10 @@ rm -rf %{buildroot}
 
 %files executor
 %config(noreplace) %attr(-, root, root) %{_unitdir}/openstack-mistral-executor.service
+
+%files all
+%config(noreplace) %attr(-, root, root) %{_unitdir}/openstack-mistral-all.service
+
 
 %files -n python-%{name}
 %{python2_sitelib}/%{service}
