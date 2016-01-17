@@ -65,6 +65,8 @@ Requires:       python-stevedore >= 1.5.0
 Requires:       python-wsme >= 0.7
 Requires:       python2-yaql >= 1.0.0
 Requires:       python-tooz >= 1.19.0
+Requires:       python-ceilometerclient >= 1.5.0
+Requires:       python-troveclient >= 1.2.0
 
 %description -n python-%{name}
 Mistral is a workflow service.
