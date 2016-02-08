@@ -35,38 +35,43 @@ Requires:       python-croniter >= 0.3.4
 Requires:       python-eventlet >= 0.17.4
 Requires:       python-iso8601 >= 0.1.9
 Requires:       python-jsonschema >= 2.0.0
-Requires:       python-keystonemiddleware >= 2.0.0
 Requires:       python-kombu
 Requires:       python-mock
 Requires:       python-networkx >= 1.10
-Requires:       python-oslo-concurrency >= 2.3.0
-Requires:       python-oslo-config >= 2:2.3.0
-Requires:       python-oslo-db >= 2.4.1
-Requires:       python-oslo-messaging >= 1.16.0
-Requires:       python-oslo-utils >= 2.0.0
-Requires:       python-oslo-log >= 1.8.0
-Requires:       python-oslo-serialization >= 1.4.0
-Requires:       python-oslo-service >= 0.7.0
 Requires:       python-paramiko >= 1.13.0
 Requires:       python-pbr >= 1.6
 Requires:       python-pecan >= 1.0.0
-Requires:       python-cinderclient >= 1.3.1
-Requires:       python-glanceclient >= 1:0.18.0
-Requires:       python-heatclient >= 0.3.0
-Requires:       python-keystoneclient >= 1:1.6.0
-Requires:       python-neutronclient >= 2.6.0
-Requires:       python-novaclient >= 1:2.28.1
-Requires:       PyYAML >= 3.1.0
 Requires:       python-requests >= 2.5.2
 Requires:       python-retrying >= 1.2.3
 Requires:       python-six >= 1.9.0
-Requires:       python-sqlalchemy >= 0.9.9 , python-sqlalchemy < 1.1.0
-Requires:       python-stevedore >= 1.5.0
+Requires:       python-sqlalchemy >= 1.0.10
 Requires:       python-wsme >= 0.7
 Requires:       python2-yaql >= 1.0.0
-Requires:       python-tooz >= 1.19.0
+Requires:       PyYAML >= 3.1.0
+# OpenStack dependencies
+Requires:       python-oslo-concurrency >= 2.3.0
+Requires:       python-oslo-config >= 2:3.4.0
+Requires:       python-oslo-db >= 4.1.0
+Requires:       python-oslo-messaging >= 4.0.0
+Requires:       python-oslo-utils >= 2.0.0
+Requires:       python-oslo-log >= 1.14.0
+Requires:       python-oslo-serialization >= 1.10.0
+Requires:       python-oslo-service >= 1.0.0
+Requires:       python-stevedore >= 1.5.0
+Requires:       python-tooz >= 1.28.0
 Requires:       python-ceilometerclient >= 1.5.0
+Requires:       python-cinderclient >= 1.3.1
+Requires:       python-glanceclient >= 1:1.2.0
+Requires:       python-ironicclient >= 1.1.0
+Requires:       python-ironic-inspector-client >= 1.3.0
+Requires:       python-heatclient >= 0.6.0
+Requires:       python-keystoneclient >= 1:1.6.0
+Requires:       python-keystonemiddleware >= 4.0.0
+Requires:       python-neutronclient >= 2.6.0
+Requires:       python-novaclient >= 1:2.29.0
+Requires:       python-swiftclient >= 2.2.0
 Requires:       python-troveclient >= 1.2.0
+Requires:       python-zaqarclient >= 0.3.0
 
 %description -n python-%{name}
 Mistral is a workflow service.
