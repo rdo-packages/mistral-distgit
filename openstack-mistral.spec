@@ -59,6 +59,7 @@ Requires:       python-oslo-serialization >= 1.10.0
 Requires:       python-oslo-service >= 1.0.0
 Requires:       python-stevedore >= 1.5.0
 Requires:       python-tooz >= 1.28.0
+Requires:       python-barbicanclient >= 3.3.0
 Requires:       python-ceilometerclient >= 1.5.0
 Requires:       python-cinderclient >= 1.3.1
 Requires:       python-glanceclient >= 1:1.2.0
