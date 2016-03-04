@@ -148,6 +148,13 @@ OpenStack Mistral All service.
 This package contains the mistral api, engine, and executor service as
 an all-in-one process.
 
+%package -n python-mistral-tests
+Summary:        Mistral tests
+Requires:       %{name}-common = %{version}-%{release}
+
+%description -n python-mistral-tests
+This package contains the mistral test files.
+
 
 %package        doc
 
@@ -221,6 +228,10 @@ mkdir -p %{buildroot}/%{python2_sitelib}/%{service}/resources/actions/
 install -p -D -m 644 ./mistral/resources/workflows/* %{buildroot}/%{python2_sitelib}/%{service}/resources/workflows/
 install -p -D -m 644 ./mistral/resources/actions/* %{buildroot}/%{python2_sitelib}/%{service}/resources/actions/
 
+
+# Install tempest tests files
+cp -r mistral_tempest_tests %{buildroot}%{python2_sitelib}/mistral_tempest_tests
+
 %pre common
 USERNAME=mistral
 GROUPNAME=$USERNAME
@@ -290,5 +301,12 @@ rm -rf %{buildroot}
 %files -n python-%{name}
 %{python2_sitelib}/%{service}
 %{python2_sitelib}/%{service}-*.egg-info
+%exclude %{python2_sitelib}/mistral/tests
+%exclude %{python2_sitelib}/mistral_tempest_tests
+
+%files -n python-mistral-tests
+%license LICENSE
+%{python2_sitelib}/mistral/tests
+%{python2_sitelib}/mistral_tempest_tests
 
 %changelog
