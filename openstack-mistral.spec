@@ -1,4 +1,4 @@
-%define milestone .0rc1
+%define milestone .0rc2
 %global service mistral
 
 
@@ -6,11 +6,15 @@
 
 Name:           openstack-mistral
 Version:        2.0.0
-Release:        0.1%{?milestone}%{?dist}
+Release:        0.2%{?milestone}%{?dist}
 Summary:        Task Orchestration and Scheduling service for OpenStack cloud
 License:        ASL 2.0
 URL:            https://launchpad.net/mistral
 Source0:        http://tarballs.openstack.org/%{service}/%{service}-%{version}%{?milestone}.tar.gz
+#
+# patches_base=2.0.0.0rc2
+#
+
 # Systemd scripts
 Source10:       openstack-mistral-api.service
 Source11:       openstack-mistral-engine.service
@@ -315,5 +319,8 @@ rm -rf %{buildroot}
 %{python2_sitelib}/mistral_tempest_tests
 
 %changelog
+* Sat Apr 02 2016 Haikel Guemar <hguemar@fedoraproject.org> 2.0.0-0.2.0rc2
+- Update to 2.0.0.0rc2
+
 * Thu Mar 24 2016 RDO <rdo-list@redhat.com> 2.0.0-0.1.0rc1
 - RC1 Rebuild for Mitaka RC1 rc1
