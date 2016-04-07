@@ -1,4 +1,4 @@
-%define milestone .0rc2
+%global milestone .0rc3
 %global service mistral
 
 
@@ -319,7 +319,7 @@ rm -rf %{buildroot}
 %{python2_sitelib}/mistral_tempest_tests
 
 %changelog
-* Thu Apr 07 2016 Haikel Guemar <hguemar@fedoraproject.org> 2.0.0-0.3.0rc2
+* Thu Apr 07 2016 Haikel Guemar <hguemar@fedoraproject.org> 2.0.0-0.3.0rc3
 - Update to 2.0.0.0rc3
 
 * Sat Apr 02 2016 Haikel Guemar <hguemar@fedoraproject.org> 2.0.0-0.2.0rc2
