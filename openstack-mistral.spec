@@ -6,13 +6,13 @@
 
 Name:           openstack-mistral
 Version:        2.0.0
-Release:        0.2%{?milestone}%{?dist}
+Release:        0.3%{?milestone}%{?dist}
 Summary:        Task Orchestration and Scheduling service for OpenStack cloud
 License:        ASL 2.0
 URL:            https://launchpad.net/mistral
 Source0:        http://tarballs.openstack.org/%{service}/%{service}-%{version}%{?milestone}.tar.gz
 #
-# patches_base=2.0.0.0rc2
+# patches_base=2.0.0.0rc3
 #
 
 # Systemd scripts
@@ -319,6 +319,9 @@ rm -rf %{buildroot}
 %{python2_sitelib}/mistral_tempest_tests
 
 %changelog
+* Thu Apr 07 2016 Haikel Guemar <hguemar@fedoraproject.org> 2.0.0-0.3.0rc2
+- Update to 2.0.0.0rc3
+
 * Sat Apr 02 2016 Haikel Guemar <hguemar@fedoraproject.org> 2.0.0-0.2.0rc2
 - Update to 2.0.0.0rc2
 
