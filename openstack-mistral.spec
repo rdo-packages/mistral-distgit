@@ -229,9 +229,7 @@ mkdir -p %{buildroot}/%{python2_sitelib}/%{service}/resources/actions/
 install -p -D -m 644 ./mistral/resources/workflows/* %{buildroot}/%{python2_sitelib}/%{service}/resources/workflows/
 install -p -D -m 644 ./mistral/resources/actions/* %{buildroot}/%{python2_sitelib}/%{service}/resources/actions/
 
-
-# Install tempest tests files
-cp -r mistral_tempest_tests %{buildroot}%{python2_sitelib}/mistral_tempest_tests
+cp -r mistral_tempest_tests %{buildroot}%{python2_sitelib}/mistral/mistral_tempest_tests
 
 %pre common
 USERNAME=mistral
@@ -303,11 +301,12 @@ rm -rf %{buildroot}
 %{python2_sitelib}/%{service}
 %{python2_sitelib}/%{service}-*.egg-info
 %exclude %{python2_sitelib}/mistral/tests
-%exclude %{python2_sitelib}/mistral_tempest_tests
+%exclude %{python2_sitelib}/mistral/mistral_tempest_tests
 
 %files -n python-mistral-tests
 %license LICENSE
 %{python2_sitelib}/mistral/tests
-%{python2_sitelib}/mistral_tempest_tests
+%{python2_sitelib}/mistral/mistral_tempest_tests
+%exclude %{python2_sitelib}/mistral_tempest_tests
 
 %changelog
