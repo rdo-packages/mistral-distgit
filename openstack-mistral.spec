@@ -184,9 +184,9 @@ This package contains the documentation
 
 %prep
 %setup -q -n mistral-%{upstream_version}
+
 sed -i '1i #!/usr/bin/python' tools/sync_db.py
 
-rm -rf mistral.egg-info
 rm -rf {test-,}requirements.txt tools/{pip,test}-requires
 
 %build
@@ -229,7 +229,13 @@ mkdir -p %{buildroot}/%{python2_sitelib}/%{service}/resources/actions/
 install -p -D -m 644 ./mistral/resources/workflows/* %{buildroot}/%{python2_sitelib}/%{service}/resources/workflows/
 install -p -D -m 644 ./mistral/resources/actions/* %{buildroot}/%{python2_sitelib}/%{service}/resources/actions/
 
-cp -r mistral_tempest_tests %{buildroot}%{python2_sitelib}/mistral/mistral_tempest_tests
+# Install tempest tests files
+# TODO(apevec) remove when setup.cfg fix is merged to stable/mitaka
+# http://review.openstack.org/#/q/I5c34f3516c4f171ab4f34647f1cc4a08883feacf
+if [ ! -d %{buildroot}%{python2_sitelib}/mistral_tempest_tests ]
+then
+   cp -r mistral_tempest_tests %{buildroot}%{python2_sitelib}/mistral_tempest_tests
+fi
 
 %pre common
 USERNAME=mistral
@@ -301,12 +307,11 @@ rm -rf %{buildroot}
 %{python2_sitelib}/%{service}
 %{python2_sitelib}/%{service}-*.egg-info
 %exclude %{python2_sitelib}/mistral/tests
-%exclude %{python2_sitelib}/mistral/mistral_tempest_tests
+%exclude %{python2_sitelib}/mistral_tempest_tests
 
 %files -n python-mistral-tests
 %license LICENSE
 %{python2_sitelib}/mistral/tests
-%{python2_sitelib}/mistral/mistral_tempest_tests
-%exclude %{python2_sitelib}/mistral_tempest_tests
+%{python2_sitelib}/mistral_tempest_tests
 
 %changelog
