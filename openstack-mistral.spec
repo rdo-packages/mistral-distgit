@@ -5,7 +5,7 @@
 
 Name:           openstack-mistral
 Version:        2.0.0
-Release:        1%{?dist}
+Release:        1.1%{?dist}
 Summary:        Task Orchestration and Scheduling service for OpenStack cloud
 License:        ASL 2.0
 URL:            https://launchpad.net/mistral
@@ -19,6 +19,8 @@ Source10:       openstack-mistral-api.service
 Source11:       openstack-mistral-engine.service
 Source12:       openstack-mistral-executor.service
 Source13:       openstack-mistral-all.service
+
+Patch0001:      0001-tempest-fix-dir_path.patch
 
 BuildArch:      noarch
 
@@ -192,9 +194,12 @@ This package contains the documentation
 
 %prep
 %setup -q -n mistral-%{upstream_version}
+
+#TODO(apevec) remove when merged https://review.openstack.org/303792
+%patch0001 -p1
+
 sed -i '1i #!/usr/bin/python' tools/sync_db.py
 
-rm -rf mistral.egg-info
 rm -rf {test-,}requirements.txt tools/{pip,test}-requires
 
 %build
@@ -237,9 +242,13 @@ mkdir -p %{buildroot}/%{python2_sitelib}/%{service}/resources/actions/
 install -p -D -m 644 ./mistral/resources/workflows/* %{buildroot}/%{python2_sitelib}/%{service}/resources/workflows/
 install -p -D -m 644 ./mistral/resources/actions/* %{buildroot}/%{python2_sitelib}/%{service}/resources/actions/
 
-
 # Install tempest tests files
-cp -r mistral_tempest_tests %{buildroot}%{python2_sitelib}/mistral_tempest_tests
+# TODO(apevec) remove when setup.cfg fix is merged to stable/mitaka
+# http://review.openstack.org/#/q/I5c34f3516c4f171ab4f34647f1cc4a08883feacf
+if [ ! -d %{buildroot}%{python2_sitelib}/mistral_tempest_tests ]
+then
+   cp -r mistral_tempest_tests %{buildroot}%{python2_sitelib}/mistral_tempest_tests
+fi
 
 %pre common
 USERNAME=mistral
@@ -319,6 +328,9 @@ rm -rf %{buildroot}
 %{python2_sitelib}/mistral_tempest_tests
 
 %changelog
+* Tue Apr 12 2016 Alan Pevec <apevec AT redhat.com> - 2.0.0-1.1
+- Fix mistral tempest plugin
+
 * Thu Apr  7 2016 Haïkel Guémar <hguemar@fedoraproject.org> - 2.0.0-1
 - Upstream 2.0.0
 
