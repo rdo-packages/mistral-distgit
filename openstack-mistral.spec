@@ -74,6 +74,7 @@ Requires:       python-swiftclient >= 2.2.0
 Requires:       python-troveclient >= 1.2.0
 Requires:       python-zaqarclient >= 0.3.0
 Requires:       python-mistralclient >= 1.0.0
+Requires:       python-designateclient >= 1.5.0
 
 %description -n python-%{name}
 Mistral is a workflow service.
