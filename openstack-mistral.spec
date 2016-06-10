@@ -45,13 +45,14 @@ Requires:       python-requests >= 2.5.2
 Requires:       python-retrying >= 1.2.3
 Requires:       python-six >= 1.9.0
 Requires:       python-sqlalchemy >= 1.0.10
-Requires:       python-wsme >= 0.7
-Requires:       python2-yaql >= 1.0.0
+Requires:       python-wsme >= 0.8
+Requires:       python-yaql >= 1.1.0
 Requires:       PyYAML >= 3.1.0
 # OpenStack dependencies
 Requires:       python-oslo-concurrency >= 2.3.0
 Requires:       python-oslo-config >= 2:3.4.0
 Requires:       python-oslo-db >= 4.1.0
+Requires:       python-oslo-middleware >= 3.0.0
 Requires:       python-oslo-messaging >= 4.0.0
 Requires:       python-oslo-utils >= 2.0.0
 Requires:       python-oslo-log >= 1.14.0
@@ -75,6 +76,7 @@ Requires:       python-troveclient >= 1.2.0
 Requires:       python-zaqarclient >= 0.3.0
 Requires:       python-mistralclient >= 1.0.0
 Requires:       python-designateclient >= 1.5.0
+Requires:       python-magnumclient >= 2.0.0
 
 %description -n python-%{name}
 Mistral is a workflow service.
