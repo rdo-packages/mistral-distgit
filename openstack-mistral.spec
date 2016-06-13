@@ -1,5 +1,8 @@
 %global service mistral
 
+#FIXME: enable with_doc below when we have python-sphinxcontrib-pecanwsme
+%global with_doc 0
+
 Name:           openstack-mistral
 Version:        XXX
 Release:        XXX
@@ -160,6 +163,7 @@ Requires:       %{name}-common = %{version}-%{release}
 This package contains the mistral test files.
 
 
+%if 0%{?with_doc}
 %package        doc
 
 Summary:        Documentation for OpenStack Workflow Service
@@ -168,7 +172,7 @@ BuildRequires:  python-sphinx
 BuildRequires:  python-oslo-sphinx
 BuildRequires:  python-sphinxcontrib-httpdomain
 # FIXME: this doesn't exist???
-#BuildRequires:  python-sphinxcontrib-pecanwsme
+BuildRequires:  python-sphinxcontrib-pecanwsme
 BuildRequires:  python2-wsme
 BuildRequires:  python-oslo-log
 BuildRequires:  python-pecan
@@ -184,6 +188,7 @@ BuildRequires:  python-networkx
 OpenStack Mistral documentaion.
 .
 This package contains the documentation
+%endif
 
 %prep
 %setup -q -n mistral-%{upstream_version}
@@ -200,11 +205,12 @@ oslo-config-generator --config-file tools/config/config-generator.mistral.conf \
 %install
 %{__python} setup.py install -O1 --skip-build --root %{buildroot}
 
+%if 0%{?with_doc}
 export PYTHONPATH="$( pwd ):$PYTHONPATH"
 pushd doc
-#FIXME: uncomment below when we have python-sphinxcontrib-pecanwsme
-#sphinx-build -b html source build/html
+sphinx-build -b html source build/html
 popd
+%endif
 
 mkdir -p %{buildroot}/etc/mistral/
 mkdir -p %{buildroot}/var/log/mistral
@@ -292,9 +298,11 @@ rm -rf %{buildroot}
 %dir %attr(755, mistral, mistral) /var/run/mistral
 %dir %attr(755, mistral, mistral) /var/log/mistral
 
+
+%if 0%{?with_doc}
 %files doc
-#FIXME: uncomment below when we have python-sphinxcontrib-pecanwsme
-#%doc doc/build/html
+%doc doc/build/html
+%endif
 
 %files engine
 %config(noreplace) %attr(-, root, root) %{_unitdir}/openstack-mistral-engine.service
