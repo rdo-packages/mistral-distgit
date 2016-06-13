@@ -289,8 +289,8 @@ rm -rf %{buildroot}
 %dir %{_sysconfdir}/mistral
 %config(noreplace) %attr(-, mistral, mistral) %{_sysconfdir}/mistral/*
 %{_bindir}/mistral-*
-%dir %attr(766, mistral, mistral) /var/run/mistral
-%dir %attr(766, mistral, mistral) /var/log/mistral
+%dir %attr(755, mistral, mistral) /var/run/mistral
+%dir %attr(755, mistral, mistral) /var/log/mistral
 
 %files doc
 #FIXME: uncomment below when we have python-sphinxcontrib-pecanwsme
