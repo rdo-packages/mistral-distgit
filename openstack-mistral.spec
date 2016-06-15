@@ -80,6 +80,7 @@ Requires:       python-zaqarclient >= 0.3.0
 Requires:       python-mistralclient >= 1.0.0
 Requires:       python-designateclient >= 1.5.0
 Requires:       python-magnumclient >= 2.0.0
+Requires:       python2-muranoclient >= 0.8.2
 
 %description -n python-%{name}
 Mistral is a workflow service.
