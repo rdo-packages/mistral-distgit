@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a6b29fe_16cc1c35",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2016-06-15T18:09:18Z",
+      "side": 1,
+      "message": "python-muranoclient",
+      "revId": "fad8cc7609cb387a7ae5c41168043c0b800d50ce",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a6b29fe_36c79814",
+        "filename": "openstack-mistral.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2016-06-15T18:09:18Z",
+      "side": 1,
+      "message": "python-muranoclient",
+      "revId": "fad8cc7609cb387a7ae5c41168043c0b800d50ce",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
