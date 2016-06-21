@@ -61,6 +61,7 @@ Requires:       python-oslo-utils >= 2.0.0
 Requires:       python-oslo-log >= 1.14.0
 Requires:       python-oslo-serialization >= 1.10.0
 Requires:       python-oslo-service >= 1.0.0
+Requires:       python-oslo-policy >= 1.9.0
 Requires:       python-stevedore >= 1.5.0
 Requires:       python-tooz >= 1.28.0
 Requires:       python-barbicanclient >= 3.3.0
@@ -228,6 +229,8 @@ install -p -D -m 640 etc/logging.conf.sample \
                      %{buildroot}%{_sysconfdir}/mistral/logging.conf
 install -p -D -m 640 etc/wf_trace_logging.conf.sample \
                      %{buildroot}%{_sysconfdir}/mistral/wf_trace_logging.conf
+install -p -D -m 640 etc/policy.json \
+                     %{buildroot}%{_sysconfdir}/mistral/policy.json
 install -p -D -m 640 tools/sync_db.py \
                      %{buildroot}/usr/bin/mistral-db-sync
 chmod +x %{buildroot}/usr/bin/mistral*
