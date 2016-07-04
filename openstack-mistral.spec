@@ -199,6 +199,10 @@ sed -i '1i #!/usr/bin/python' tools/sync_db.py
 
 rm -rf {test-,}requirements.txt tools/{pip,test}-requires
 
+# TODO(apevec) remove once tackerclient is packaged
+sed -i '/^from tackerclient/d' mistral/actions/openstack/actions.py
+
+
 %build
 %{__python} setup.py build
 oslo-config-generator --config-file tools/config/config-generator.mistral.conf \
