@@ -18,6 +18,7 @@ Source13:       openstack-mistral-all.service
 
 BuildArch:      noarch
 
+BuildRequires:  git
 BuildRequires:  python-devel
 BuildRequires:  python-oslo-config >= 2:2.3.0
 BuildRequires:  python-setuptools
@@ -193,7 +194,7 @@ This package contains the documentation
 %endif
 
 %prep
-%setup -q -n mistral-%{upstream_version}
+%autosetup -n mistral-%{upstream_version} -S git
 
 sed -i '1i #!/usr/bin/python' tools/sync_db.py
 
