@@ -1,0 +1,177 @@
+From 69cd25fd51fe8b7e080ca25dbf7be1301a289529 Mon Sep 17 00:00:00 2001
+From: Alan Pevec <alan.pevec@redhat.com>
+Date: Wed, 6 Jul 2016 10:11:04 +0200
+Subject: [PATCH] Revert "Add tacker actions in mistral"
+
+This reverts commit 7e9c04ebb963c93cf61c8331d90c57ac25e6e70c.
+---
+ mistral/actions/generator_factory.py               |  2 +-
+ mistral/actions/openstack/actions.py               | 25 ----------------------
+ mistral/actions/openstack/mapping.json             | 19 ----------------
+ .../tests/unit/actions/openstack/test_generator.py |  5 ++---
+ .../actions/openstack/test_openstack_actions.py    | 14 ------------
+ .../tacket-actions-support-2b4cee2644313cb3.yaml   |  3 ---
+ requirements.txt                                   |  1 -
+ tools/get_action_list.py                           |  2 --
+ 8 files changed, 3 insertions(+), 68 deletions(-)
+ delete mode 100644 releasenotes/notes/tacket-actions-support-2b4cee2644313cb3.yaml
+
+diff --git a/mistral/actions/generator_factory.py b/mistral/actions/generator_factory.py
+index adb18f6..fc23410 100644
+--- a/mistral/actions/generator_factory.py
++++ b/mistral/actions/generator_factory.py
+@@ -20,7 +20,7 @@ from mistral.actions.openstack.action_generator import base
+ SUPPORTED_MODULES = [
+     'Nova', 'Glance', 'Keystone', 'Heat', 'Neutron', 'Cinder', 'Ceilometer',
+     'Trove', 'Ironic', 'Baremetal Introspection', 'Swift', 'Zaqar', 'Barbican',
+-    'Mistral', 'Designate', 'Magnum', 'Murano', 'Tacker'
++    'Mistral', 'Designate', 'Magnum', 'Murano'
+ ]
+ 
+ 
+diff --git a/mistral/actions/openstack/actions.py b/mistral/actions/openstack/actions.py
+index 5c63e28..887a1b4 100644
+--- a/mistral/actions/openstack/actions.py
++++ b/mistral/actions/openstack/actions.py
+@@ -33,7 +33,6 @@ from novaclient import client as novaclient
+ from oslo_config import cfg
+ from oslo_log import log
+ from swiftclient import client as swift_client
+-from tackerclient.v1_0 import client as tackerclient
+ from troveclient.v1 import client as troveclient
+ from zaqarclient.queues.v2 import client as zaqarclient
+ 
+@@ -661,27 +660,3 @@ class MuranoAction(base.OpenStackAction):
+     @classmethod
+     def _get_fake_client(cls):
+         return cls._client_class()
+-
+-
+-class TackerAction(base.OpenStackAction):
+-    _client_class = tackerclient.Client
+-
+-    def _get_client(self):
+-        ctx = context.ctx()
+-
+-        LOG.debug("Tacker action security context: %s" % ctx)
+-
+-        keystone_endpoint = keystone_utils.get_keystone_endpoint_v2()
+-        tacker_endpoint = keystone_utils.get_endpoint_for_project('tacker')
+-
+-        return self._client_class(
+-            endpoint_url=tacker_endpoint.url,
+-            token=ctx.auth_token,
+-            tenant_id=ctx.project_id,
+-            region_name=tacker_endpoint.region,
+-            auth_url=keystone_endpoint.url
+-        )
+-
+-    @classmethod
+-    def _get_fake_client(cls):
+-        return cls._client_class()
+diff --git a/mistral/actions/openstack/mapping.json b/mistral/actions/openstack/mapping.json
+index cbaf077..f7a087d 100644
+--- a/mistral/actions/openstack/mapping.json
++++ b/mistral/actions/openstack/mapping.json
+@@ -1245,24 +1245,5 @@
+         "sessions_delete": "sessions.delete",
+         "sessions_deploy": "sessions.deploy",
+         "sessions_get": "sessions.get"
+-    },
+-    "tacker":{
+-        "_comment": "It uses tackerclient.v1_0.",
+-        "list_extensions": "list_extensions",
+-        "show_extension": "show_extension",
+-        "create_vnfd": "create_vnfd",
+-        "delete_vnfd": "delete_vnfd",
+-        "list_vnfds": "list_vnfds",
+-        "show_vnfd": "show_vnfd",
+-        "create_vnf": "create_vnf",
+-        "update_vnf": "update_vnf",
+-        "delete_vnf": "delete_vnf",
+-        "list_vnfs": "list_vnfs",
+-        "show_vnf": "show_vnf",
+-        "create_vim": "create_vim",
+-        "update_vim": "update_vim",
+-        "delete_vim": "delete_vim",
+-        "list_vims": "list_vims",
+-        "show_vim": "show_vim"
+     }
+ }
+diff --git a/mistral/tests/unit/actions/openstack/test_generator.py b/mistral/tests/unit/actions/openstack/test_generator.py
+index 81931ff..2420a5b 100644
+--- a/mistral/tests/unit/actions/openstack/test_generator.py
++++ b/mistral/tests/unit/actions/openstack/test_generator.py
+@@ -34,11 +34,10 @@ MODULE_MAPPING = {
+     'mistral': ['mistral.workflows_get', actions.MistralAction],
+     'designate': ['designate.domains_list', actions.DesignateAction],
+     'magnum': ['magnum.bays_list', actions.MagnumAction],
+-    'murano': ['murano.deployments_list', actions.MuranoAction],
+-    'tacker': ['tacker.list_vims', actions.TackerAction]
++    'murano': ['murano.deployments_list', actions.MuranoAction]
+ }
+ 
+-EXTRA_MODULES = ['neutron', 'swift', 'zaqar', 'tacker']
++EXTRA_MODULES = ['neutron', 'swift', 'zaqar']
+ 
+ 
+ class GeneratorTest(base.BaseTest):
+diff --git a/mistral/tests/unit/actions/openstack/test_openstack_actions.py b/mistral/tests/unit/actions/openstack/test_openstack_actions.py
+index 45f33b8..a1ce90f 100644
+--- a/mistral/tests/unit/actions/openstack/test_openstack_actions.py
++++ b/mistral/tests/unit/actions/openstack/test_openstack_actions.py
+@@ -225,17 +225,3 @@ class OpenStackActionTest(base.BaseTestCase):
+         mocked().categories.get.assert_called_once_with(
+             category_id="1234-abcd"
+         )
+-
+-    @mock.patch.object(actions.TackerAction, '_get_client')
+-    def test_tacker_action(self, mocked):
+-        method_name = "show_vim"
+-        action_class = actions.TackerAction
+-        action_class.client_method_name = method_name
+-        params = {'vim_id': '1234-abcd'}
+-        action = action_class(**params)
+-        action.run()
+-
+-        self.assertTrue(mocked().show_vim.called)
+-        mocked().show_vim.assert_called_once_with(
+-            vim_id="1234-abcd"
+-        )
+diff --git a/releasenotes/notes/tacket-actions-support-2b4cee2644313cb3.yaml b/releasenotes/notes/tacket-actions-support-2b4cee2644313cb3.yaml
+deleted file mode 100644
+index c894e61..0000000
+--- a/releasenotes/notes/tacket-actions-support-2b4cee2644313cb3.yaml
++++ /dev/null
+@@ -1,3 +0,0 @@
+----
+-features:
+-  - Tacker actions are now supported.
+diff --git a/requirements.txt b/requirements.txt
+index c18f509..ba5d024 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -37,7 +37,6 @@ python-muranoclient>=0.8.2 # Apache-2.0
+ python-neutronclient>=4.2.0 # Apache-2.0
+ python-novaclient!=2.33.0,>=2.29.0 # Apache-2.0
+ python-swiftclient>=2.2.0 # Apache-2.0
+-python-tackerclient>=0.4.0 # Apache-2.0
+ python-troveclient>=2.2.0 # Apache-2.0
+ python-ironicclient>=1.1.0 # Apache-2.0
+ python-ironic-inspector-client>=1.5.0 # Apache-2.0
+diff --git a/tools/get_action_list.py b/tools/get_action_list.py
+index 501dcfd..b26db0e 100644
+--- a/tools/get_action_list.py
++++ b/tools/get_action_list.py
+@@ -51,8 +51,6 @@ from troveclient.v1 import client as troveclient
+ # like we do in this class.
+ # TODO(therve): Zaqarclient doesn't currently support discovery
+ # like we do in this class.
+-# TODO(sa709c): Tackerclient doesn't currently support discovery
+-# like we do in this class.
+ 
+ """It is simple CLI tool which allows to see and update mapping.json file
+ if needed. mapping.json contains all allowing OpenStack actions sorted by
+-- 
+2.5.5
+

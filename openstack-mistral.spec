@@ -16,6 +16,9 @@ Source11:       openstack-mistral-engine.service
 Source12:       openstack-mistral-executor.service
 Source13:       openstack-mistral-all.service
 
+# TODO(apevec) remove once tackerclient is packaged
+Patch0001:      0001-Revert-Add-tacker-actions-in-mistral.patch
+
 BuildArch:      noarch
 
 BuildRequires:  python-devel
@@ -193,15 +196,11 @@ This package contains the documentation
 %endif
 
 %prep
-%setup -q -n mistral-%{upstream_version}
+%autosetup -n mistral-%{upstream_version}
 
 sed -i '1i #!/usr/bin/python' tools/sync_db.py
 
 rm -rf {test-,}requirements.txt tools/{pip,test}-requires
-
-# TODO(apevec) remove once tackerclient is packaged
-sed -i '/^from tackerclient/d' mistral/actions/openstack/actions.py
-
 
 %build
 %{__python} setup.py build
