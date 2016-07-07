@@ -1,7 +1,6 @@
 %global service mistral
 
-#FIXME: enable with_doc below when we have python-sphinxcontrib-pecanwsme
-%global with_doc 0
+%global with_doc 1
 
 Name:           openstack-mistral
 Version:        XXX
@@ -174,7 +173,6 @@ Summary:        Documentation for OpenStack Workflow Service
 BuildRequires:  python-sphinx
 BuildRequires:  python-oslo-sphinx
 BuildRequires:  python-sphinxcontrib-httpdomain
-# FIXME: this doesn't exist???
 BuildRequires:  python-sphinxcontrib-pecanwsme
 BuildRequires:  python2-wsme
 BuildRequires:  python-oslo-log
