@@ -35,6 +35,7 @@ Summary:        Mistral Python libraries
 Requires:       python-alembic >= 0.8.0
 Requires:       python-babel >= 1.3
 Requires:       python-croniter >= 0.3.4
+Requires:       python-cachetools >=1.1.0
 Requires:       python-eventlet >= 0.17.4
 Requires:       python-iso8601 >= 0.1.9
 Requires:       python-jsonschema >= 2.0.0
