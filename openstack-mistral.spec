@@ -1,3 +1,4 @@
+%{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global service mistral
 
 %global with_doc 1
@@ -8,7 +9,7 @@ Release:        XXX
 Summary:        Task Orchestration and Scheduling service for OpenStack cloud
 License:        ASL 2.0
 URL:            https://launchpad.net/mistral
-Source0:        http://tarballs.openstack.org/%{service}/%{service}-master.tar.gz
+Source0:        http://tarballs.openstack.org/%{service}/%{service}-%{upstream_version}.tar.gz
 # Systemd scripts
 Source10:       openstack-mistral-api.service
 Source11:       openstack-mistral-engine.service
