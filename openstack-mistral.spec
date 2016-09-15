@@ -1,11 +1,12 @@
+%global milestone .0b3
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global service mistral
 
 %global with_doc 1
 
 Name:           openstack-mistral
-Version:        XXX
-Release:        XXX
+Version:        3.0.0
+Release:        0.1%{?milestone}%{?dist}
 Summary:        Task Orchestration and Scheduling service for OpenStack cloud
 License:        ASL 2.0
 URL:            https://launchpad.net/mistral
@@ -336,3 +337,6 @@ rm -rf %{buildroot}
 %{python2_sitelib}/mistral_tempest_tests
 
 %changelog
+* Thu Sep 15 2016 Haikel Guemar <hguemar@fedoraproject.org> 3.0.0-0.1
+- Update to 3.0.0.0b3
+
