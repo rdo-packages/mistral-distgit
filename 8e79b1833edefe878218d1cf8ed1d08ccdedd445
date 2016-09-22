@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "facab960_ab6300b0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2016-09-22T16:45:46Z",
+      "side": 1,
+      "message": "that\u0027s WHAT part, WHY part is missing?\n\nIn general, I\u0027d like to move distro to Journal logging by default but that will be for opstools team to define.",
+      "revId": "8e79b1833edefe878218d1cf8ed1d08ccdedd445",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
