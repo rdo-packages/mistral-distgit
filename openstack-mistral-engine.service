@@ -5,7 +5,7 @@ After=syslog.target network.target
 [Service]
 Type=simple
 User=mistral
-ExecStart=/usr/bin/mistral-server --config-file=/etc/mistral/mistral.conf --server=engine
+ExecStart=/usr/bin/mistral-server --config-file=/etc/mistral/mistral.conf --log-file=/var/log/mistral/engine.log --server=engine
 Restart=on-failure
 
 [Install]
