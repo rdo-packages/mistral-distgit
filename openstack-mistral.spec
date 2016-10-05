@@ -337,3 +337,4 @@ rm -rf %{buildroot}
 %{python2_sitelib}/mistral_tempest_tests
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/mistral/commit/?id=e6134eeec0a31469f592ec245dfdd294689ea59f
