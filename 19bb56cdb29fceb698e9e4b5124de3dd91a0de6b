@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_05ef96b1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2016-10-12T23:23:48Z",
+      "side": 1,
+      "message": "This was not backported to stable/newton so this should not be needed in newton-rdo.",
+      "revId": "19bb56cdb29fceb698e9e4b5124de3dd91a0de6b",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
