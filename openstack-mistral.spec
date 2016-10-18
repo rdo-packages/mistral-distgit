@@ -4,7 +4,7 @@
 %global with_doc 1
 
 Name:           openstack-mistral
-Version:        3.0.1
+Version:        3.0.2
 Release:        1%{?dist}
 Summary:        Task Orchestration and Scheduling service for OpenStack cloud
 License:        ASL 2.0
@@ -336,6 +336,9 @@ rm -rf %{buildroot}
 %{python2_sitelib}/mistral_tempest_tests
 
 %changelog
+* Tue Oct 18 2016 Haikel Guemar <hguemar@fedoraproject.org> 3.0.2-1
+- Update to 3.0.2
+
 * Mon Oct 10 2016 Alfredo Moralejo <amoralej@redhat.com> 3.0.1-1
 - Update to 3.0.1
 
