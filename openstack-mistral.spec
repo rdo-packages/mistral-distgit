@@ -214,6 +214,9 @@ oslo-config-generator --config-file tools/config/config-generator.mistral.conf \
 %install
 %{__python} setup.py install -O1 --skip-build --root %{buildroot}
 
+# Create fake egg-info for the tempest plugin
+%py2_entrypoint %{service} %{service}
+
 %if 0%{?with_doc}
 export PYTHONPATH="$( pwd ):$PYTHONPATH"
 pushd doc
@@ -335,5 +338,6 @@ rm -rf %{buildroot}
 %license LICENSE
 %{python2_sitelib}/mistral/tests
 %{python2_sitelib}/mistral_tempest_tests
+%{python2_sitelib}/%{service}_tests.egg-info
 
 %changelog
