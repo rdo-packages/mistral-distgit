@@ -19,6 +19,7 @@ Source13:       openstack-mistral-all.service
 BuildArch:      noarch
 
 BuildRequires:  git
+BuildRequires:  openstack-macros
 BuildRequires:  python-devel
 BuildRequires:  python-oslo-config >= 2:2.3.0
 BuildRequires:  python-setuptools
