@@ -342,3 +342,4 @@ rm -rf %{buildroot}
 %{python2_sitelib}/%{service}_tests.egg-info
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/mistral/commit/?id=3b64172ddbb77b50c5f0a98c40c63c3a9c5ccde1
