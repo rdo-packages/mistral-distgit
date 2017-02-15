@@ -316,7 +316,7 @@ rm -rf %{buildroot}
 %config(noreplace) %attr(-, mistral, mistral) %{_sysconfdir}/mistral/*
 %{_bindir}/mistral-*
 %dir %attr(755, mistral, mistral) /var/run/mistral
-%dir %attr(755, mistral, mistral) /var/log/mistral
+%dir %attr(750, mistral, mistral) /var/log/mistral
 
 
 %if 0%{?with_doc}
