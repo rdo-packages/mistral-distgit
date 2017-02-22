@@ -1,4 +1,3 @@
-%global milestone .0rc2
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global service mistral
 
@@ -6,15 +5,11 @@
 
 Name:           openstack-mistral
 Version:        4.0.0
-Release:        0.2%{?milestone}%{?dist}
+Release:        1%{?dist}
 Summary:        Task Orchestration and Scheduling service for OpenStack cloud
 License:        ASL 2.0
 URL:            https://launchpad.net/mistral
 Source0:        https://tarballs.openstack.org/%{service}/%{service}-%{upstream_version}.tar.gz
-#
-# patches_base=4.0.0.0rc2
-#
-
 # Systemd scripts
 Source10:       openstack-mistral-api.service
 Source11:       openstack-mistral-engine.service
@@ -352,6 +347,9 @@ rm -rf %{buildroot}
 %{python2_sitelib}/%{service}_tests.egg-info
 
 %changelog
+* Wed Feb 22 2017 Alfredo Moralejo <amoralej@redhat.com> 4.0.0-1
+- Update to 4.0.0
+
 * Mon Feb 20 2017 Alfredo Moralejo <amoralej@redhat.com> 4.0.0-0.2.0rc2
 - Update to 4.0.0.0rc2
 
