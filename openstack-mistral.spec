@@ -85,12 +85,8 @@ Requires:       python-keystonemiddleware >= 4.12.0
 Requires:       python-neutronclient >= 5.1.0
 Requires:       python-novaclient >= 1:6.0.0
 Requires:       python-swiftclient >= 3.2.0
-Requires:       python-troveclient >= 2.2.0
 Requires:       python-zaqarclient >= 1.0.0
 Requires:       python-mistralclient >= 2.0.0
-Requires:       python-designateclient >= 1.5.0
-Requires:       python-magnumclient >= 2.0.0
-Requires:       python-muranoclient >= 0.8.2
 
 %description -n python-%{name}
 Mistral is a workflow service.
