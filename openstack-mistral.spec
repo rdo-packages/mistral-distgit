@@ -20,8 +20,6 @@ Source11:       openstack-mistral-engine.service
 Source12:       openstack-mistral-executor.service
 Source13:       openstack-mistral-all.service
 
-Patch0001:      0001-tempest-fix-dir_path.patch
-
 BuildArch:      noarch
 
 BuildRequires:  python-devel
@@ -194,9 +192,6 @@ This package contains the documentation
 
 %prep
 %setup -q -n mistral-%{upstream_version}
-
-#TODO(apevec) remove when merged https://review.openstack.org/303792
-%patch0001 -p1
 
 sed -i '1i #!/usr/bin/python' tools/sync_db.py
 
