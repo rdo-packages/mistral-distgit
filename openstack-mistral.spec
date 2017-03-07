@@ -20,8 +20,6 @@ Source11:       openstack-mistral-engine.service
 Source12:       openstack-mistral-executor.service
 Source13:       openstack-mistral-all.service
 
-Patch0001:      0001-tempest-fix-dir_path.patch
-
 BuildArch:      noarch
 
 BuildRequires:  python-devel
