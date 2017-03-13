@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5ac4a560_e8850eae",
+        "filename": "openstack-mistral.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2017-03-13T22:51:22Z",
+      "side": 1,
+      "message": "CVE-2017-2622 description in https://bugzilla.redhat.com/show_bug.cgi?id\u003d1420992 says:\nThe directory /var/log/mistral is world readable and contains log files that are readable, which can result in the exposure of sensitive information. The \u0027other readable/execute\u0027 bits need to be removed from the /var/log/mistral directory\n\nIt is unclear from the description which specific \"sensitive information\" is leaked so I\u0027m not sure proposed fix is correct: logs should not contain sensitive info and bugfix should be to conceal it before sending to logs\nlike for example password parameters in oslo.config: https://github.com/openstack/oslo.config/commit/0e4f86ec0998779b1ef4a1ae72a985d823886ff4\n\n\nThe plan is to centralize logs collection using Opstools SIG and removing log readability might break fluentd agent.",
+      "revId": "f359505e99dea3deb2c96b28b0a0212599f1bd14",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
