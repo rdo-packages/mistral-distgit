@@ -87,6 +87,7 @@ Requires:       python-novaclient >= 1:6.0.0
 Requires:       python-swiftclient >= 3.2.0
 Requires:       python-zaqarclient >= 1.0.0
 Requires:       python-mistralclient >= 2.0.0
+Requires:       python-mistral-lib >= 0.1.0
 
 %description -n python-%{name}
 Mistral is a workflow service.
