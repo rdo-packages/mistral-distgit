@@ -15,6 +15,7 @@ Source10:       openstack-mistral-api.service
 Source11:       openstack-mistral-engine.service
 Source12:       openstack-mistral-executor.service
 Source13:       openstack-mistral-all.service
+Source14:       openstack-mistral-event-engine.service
 
 BuildArch:      noarch
 
@@ -151,9 +152,21 @@ OpenStack Mistral Executor service.
 This package contains the mistral executor, which is one of core services of
 mistral, and which the API servers will use.
 
+%package        event-engine
+
+Summary: Openstack Mistral Event Engine daemon
+
+Requires:       %{name}-common = %{version}-%{release}
+
+%description    event-engine
+Openstack Mistral Event Engine service.
+.
+This package contains the mistral event engine, which is one of the core
+services of mistral.
+
 %package        all
 
-Summary: OpenStack Mistral Executor daemon
+Summary: OpenStack Mistral All-in-one daemon
 
 Requires:       %{name}-common = %{version}-%{release}
 
@@ -235,6 +248,7 @@ install -p -D -m 644 %SOURCE10 %{buildroot}%{_unitdir}/openstack-mistral-api.ser
 install -p -D -m 644 %SOURCE11 %{buildroot}%{_unitdir}/openstack-mistral-engine.service
 install -p -D -m 644 %SOURCE12 %{buildroot}%{_unitdir}/openstack-mistral-executor.service
 install -p -D -m 644 %SOURCE13 %{buildroot}%{_unitdir}/openstack-mistral-all.service
+install -p -D -m 644 %SOURCE14 %{buildroot}%{_unitdir}/openstack-mistral-event-engine.service
 
 install -p -D -m 640 etc/mistral.conf.sample \
                      %{buildroot}%{_sysconfdir}/mistral/mistral.conf
@@ -298,6 +312,13 @@ rm -rf %{buildroot}
 %postun executor
 %systemd_postun_with_restart openstack-mistral-executor.service
 
+%post event-engine
+%systemd_post openstack-mistral-event-engine.service
+%preun event-engine
+%systemd_preun openstack-mistral-event-engine.service
+%postun event-engine
+%systemd_postun_with_restart openstack-mistral-event-engine.service
+
 %post all
 %systemd_post openstack-mistral-all.service
 %preun all
@@ -326,6 +347,9 @@ rm -rf %{buildroot}
 
 %files executor
 %config(noreplace) %attr(-, root, root) %{_unitdir}/openstack-mistral-executor.service
+
+%files event-engine
+%config(noreplace) %attr(-, root, root) %{_unitdir}/openstack-mistral-event-engine.service
 
 %files all
 %config(noreplace) %attr(-, root, root) %{_unitdir}/openstack-mistral-all.service
