@@ -199,6 +199,7 @@ BuildRequires:  python-eventlet
 BuildRequires:  python-jsonschema
 BuildRequires:  python-keystoneclient
 BuildRequires:  python-keystonemiddleware
+BuildRequires:  python-mistral-lib
 BuildRequires:  python-oslo-db
 BuildRequires:  python-oslo-log
 BuildRequires:  python-oslo-messaging
