@@ -4,8 +4,8 @@
 %global with_doc 1
 
 Name:           openstack-mistral
-Version:        4.0.0
-Release:        2%{?dist}
+Version:        4.0.1
+Release:        1%{?dist}
 Summary:        Task Orchestration and Scheduling service for OpenStack cloud
 License:        ASL 2.0
 URL:            https://launchpad.net/mistral
@@ -347,6 +347,9 @@ rm -rf %{buildroot}
 %{python2_sitelib}/%{service}_tests.egg-info
 
 %changelog
+* Wed May 17 2017 rdo-trunk <javier.pena@redhat.com> 4.0.1-1
+- Update to 4.0.1
+
 * Thu Mar 09 2017 Alfredo Moralejo <amoralej@redhat.com> 4.0.0-2
 - Log dir not world readable (CVE-2017-2622)
 
