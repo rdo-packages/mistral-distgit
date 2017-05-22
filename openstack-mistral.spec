@@ -4,7 +4,7 @@
 %global with_doc 1
 
 Name:           openstack-mistral
-Version:        4.0.1
+Version:        4.0.2
 Release:        1%{?dist}
 Summary:        Task Orchestration and Scheduling service for OpenStack cloud
 License:        ASL 2.0
@@ -347,6 +347,9 @@ rm -rf %{buildroot}
 %{python2_sitelib}/%{service}_tests.egg-info
 
 %changelog
+* Mon May 22 2017 rdo-trunk <javier.pena@redhat.com> 4.0.2-1
+- Update to 4.0.2
+
 * Wed May 17 2017 rdo-trunk <javier.pena@redhat.com> 4.0.1-1
 - Update to 4.0.1
 
