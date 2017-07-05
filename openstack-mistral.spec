@@ -190,7 +190,7 @@ This package contains the mistral test files.
 Summary:        Documentation for OpenStack Workflow Service
 
 BuildRequires:  python-sphinx
-BuildRequires:  python-oslo-sphinx
+BuildRequires:  python-openstackdocstheme
 BuildRequires:  python-sphinxcontrib-httpdomain
 BuildRequires:  python-sphinxcontrib-pecanwsme
 BuildRequires:  python2-wsme
@@ -235,10 +235,8 @@ oslo-config-generator --config-file tools/config/config-generator.mistral.conf \
 %py2_entrypoint %{service} %{service}
 
 %if 0%{?with_doc}
-export PYTHONPATH="$( pwd ):$PYTHONPATH"
-pushd doc
-sphinx-build -b html source build/html
-popd
+%{__python2} setup.py build_sphinx -b html
+rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
 
 mkdir -p %{buildroot}/etc/mistral/
