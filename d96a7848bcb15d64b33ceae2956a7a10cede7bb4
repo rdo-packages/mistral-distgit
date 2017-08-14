@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a890539_bed6d7c3",
+        "filename": "openstack-mistral.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2017-08-14T07:51:57Z",
+      "side": 1,
+      "message": "0.8.10 is not available, change this to latest available: 0.8.7",
+      "range": {
+        "startLine": 37,
+        "startChar": 34,
+        "endLine": 37,
+        "endChar": 40
+      },
+      "revId": "d96a7848bcb15d64b33ceae2956a7a10cede7bb4",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a890539_dedac3e8",
+        "filename": "openstack-mistral.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2017-08-14T07:51:57Z",
+      "side": 1,
+      "message": "5.24.2",
+      "range": {
+        "startLine": 65,
+        "startChar": 41,
+        "endLine": 65,
+        "endChar": 47
+      },
+      "revId": "d96a7848bcb15d64b33ceae2956a7a10cede7bb4",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
