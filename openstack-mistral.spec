@@ -33,7 +33,7 @@ BuildRequires:  systemd
 %package -n     python-%{service}
 Summary:        Mistral Python libraries
 Provides:       python-%{name} = %{version}-%{release}
-Obsoletes:      python-%{name} < 5.0.0-0.1.0rc1
+Obsoletes:      python-%{name} < 5.0.0-0.20170821041730.1a8837b
 
 Requires:       python-alembic >= 0.8.7
 Requires:       python-babel >= 2.3.4
