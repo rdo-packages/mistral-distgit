@@ -6,7 +6,7 @@
 
 Name:           openstack-mistral
 Version:        5.0.0
-Release:        0.1%{?milestone}%{?dist}
+Release:        0.2%{?milestone}%{?dist}
 Summary:        Task Orchestration and Scheduling service for OpenStack cloud
 License:        ASL 2.0
 URL:            https://launchpad.net/mistral
@@ -32,12 +32,13 @@ BuildRequires:  python-pbr >= 2.0.0
 BuildRequires:  systemd
 
 %description
-System package - mistral
-Python package - mistral
+%{summary}
 
-%package -n     python-%{name}
 
+%package -n     python-%{service}
 Summary:        Mistral Python libraries
+Provides:       python-%{name} = %{version}-%{release}
+Obsoletes:      python-%{name} < 5.0.0-0.1.0rc1
 
 Requires:       python-alembic >= 0.8.7
 Requires:       python-babel >= 2.3.4
@@ -95,7 +96,7 @@ Requires:       python-zaqarclient >= 1.0.0
 Requires:       python-mistralclient >= 3.1.0
 Requires:       python-mistral-lib >= 0.2.0
 
-%description -n python-%{name}
+%description -n python-%{service}
 Mistral is a workflow service.
 Most business processes consist of multiple distinct interconnected steps that need to be executed in a particular order
 in a distributed environment. One can describe such process as a set of tasks and task relations and upload such description
@@ -104,13 +105,10 @@ to Mistral so that it takes care of state management, correct execution order, p
 This package contains the Python libraries.
 
 %package        common
-
 Summary: Components common for OpenStack Mistral
 
-Requires:       python-%{name} = %{version}-%{release}
-Requires(post):   systemd
-Requires(preun):  systemd
-Requires(postun): systemd
+Requires:       python-%{service} = %{version}-%{release}
+%{?systemd_requires}
 
 %description    common
 Mistral is a workflow service.
@@ -123,7 +121,6 @@ execution order, parallelism, synchronization and high availability.
 This package contains the common files.
 
 %package        api
-
 Summary: OpenStack Mistral API daemon
 
 Requires:       %{name}-common = %{version}-%{release}
@@ -134,7 +131,6 @@ OpenStack rest API to the Mistral Engine.
 This package contains the ReST API.
 
 %package        engine
-
 Summary: OpenStack Mistral Engine daemon
 
 Requires:       %{name}-common = %{version}-%{release}
@@ -146,7 +142,6 @@ This package contains the mistral engine, which is one of core services of
 mistral.
 
 %package        executor
-
 Summary: OpenStack Mistral Executor daemon
 
 Requires:       %{name}-common = %{version}-%{release}
@@ -158,7 +153,6 @@ This package contains the mistral executor, which is one of core services of
 mistral, and which the API servers will use.
 
 %package        event-engine
-
 Summary: Openstack Mistral Event Engine daemon
 
 Requires:       %{name}-common = %{version}-%{release}
@@ -170,7 +164,6 @@ This package contains the mistral event engine, which is one of the core
 services of mistral.
 
 %package        all
-
 Summary: OpenStack Mistral All-in-one daemon
 
 Requires:       %{name}-common = %{version}-%{release}
@@ -191,7 +184,6 @@ This package contains the mistral test files.
 
 %if 0%{?with_doc}
 %package        doc
-
 Summary:        Documentation for OpenStack Workflow Service
 
 BuildRequires:  python-sphinx
@@ -216,9 +208,9 @@ BuildRequires:  python-yaql
 BuildRequires:  python-networkx
 
 %description    doc
-OpenStack Mistral documentaion.
+OpenStack Mistral documentation.
 .
-This package contains the documentation
+This package contains the documentation.
 %endif
 
 %prep
@@ -229,12 +221,12 @@ sed -i '1i #!/usr/bin/python' tools/sync_db.py
 rm -rf {test-,}requirements.txt tools/{pip,test}-requires
 
 %build
-%{__python} setup.py build
+%{__python2} setup.py build
 oslo-config-generator --config-file tools/config/config-generator.mistral.conf \
                       --output-file etc/mistral.conf.sample
 
 %install
-%{__python} setup.py install -O1 --skip-build --root %{buildroot}
+%{__python2} setup.py install -O1 --skip-build --root %{buildroot}
 
 # Create fake egg-info for the tempest plugin
 %py2_entrypoint %{service} %{service}
@@ -291,9 +283,6 @@ getent passwd $USERNAME >/dev/null ||
             -c "Mistral Daemons" $USERNAME
 exit 0
 
-
-%clean
-rm -rf %{buildroot}
 
 %post api
 %systemd_post openstack-mistral-api.service
@@ -359,7 +348,7 @@ rm -rf %{buildroot}
 %config(noreplace) %attr(-, root, root) %{_unitdir}/openstack-mistral-all.service
 
 
-%files -n python-%{name}
+%files -n python-%{service}
 %{python2_sitelib}/%{service}
 %{python2_sitelib}/%{service}-*.egg-info
 %exclude %{python2_sitelib}/mistral/tests
@@ -372,6 +361,9 @@ rm -rf %{buildroot}
 %{python2_sitelib}/%{service}_tests.egg-info
 
 %changelog
+* Wed Aug 23 2017 Alfredo Moralejo <amoralej@redhat.com> 5.0.0-0.2.0rc1
+- Renamed python-openstack-mistral to python-mistral
+
 * Tue Aug 22 2017 Alfredo Moralejo <amoralej@redhat.com> 5.0.0-0.1.0rc1
 - Update to 5.0.0.0rc1
 
