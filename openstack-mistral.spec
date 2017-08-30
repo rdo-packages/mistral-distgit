@@ -1,4 +1,3 @@
-%global milestone .0rc1
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global service mistral
 
@@ -6,13 +5,11 @@
 
 Name:           openstack-mistral
 Version:        5.0.0
-Release:        0.2%{?milestone}%{?dist}
+Release:        1%{?dist}
 Summary:        Task Orchestration and Scheduling service for OpenStack cloud
 License:        ASL 2.0
 URL:            https://launchpad.net/mistral
 Source0:        https://tarballs.openstack.org/%{service}/%{service}-%{upstream_version}.tar.gz
-#
-# patches_base=5.0.0.0rc1
 #
 
 # Systemd scripts
@@ -361,6 +358,9 @@ exit 0
 %{python2_sitelib}/%{service}_tests.egg-info
 
 %changelog
+* Wed Aug 30 2017 rdo-trunk <javier.pena@redhat.com> 5.0.0-1
+- Update to 5.0.0
+
 * Wed Aug 23 2017 Alfredo Moralejo <amoralej@redhat.com> 5.0.0-0.2.0rc1
 - Renamed python-openstack-mistral to python-mistral
 
