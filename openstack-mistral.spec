@@ -201,6 +201,7 @@ BuildRequires:  python-pecan
 BuildRequires:  python-tooz
 BuildRequires:  python-yaql
 BuildRequires:  python-networkx
+BuildRequires:  openstack-macros
 
 %description    doc
 OpenStack Mistral documentation.
@@ -213,7 +214,7 @@ This package contains the documentation.
 
 sed -i '1i #!/usr/bin/python' tools/sync_db.py
 
-rm -rf {test-,}requirements.txt tools/{pip,test}-requires
+%py_req_cleanup
 
 %build
 %{__python2} setup.py build
