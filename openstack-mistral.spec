@@ -3,6 +3,14 @@
 
 %global with_doc 1
 
+%global common_desc \
+Mistral is a workflow service. \
+Most business processes consist of multiple distinct interconnected steps that \
+need to be executed in a particular order in a distributed environment. One can \
+describe such process as a set of tasks and task relations and upload such \
+description to Mistral so that it takes care of state management, correct \
+execution order, parallelism, synchronization and high availability.
+
 Name:           openstack-mistral
 Version:        XXX
 Release:        XXX
@@ -92,11 +100,8 @@ Requires:       python-mistralclient >= 3.1.0
 Requires:       python-mistral-lib >= 0.2.0
 
 %description -n python-%{service}
-Mistral is a workflow service.
-Most business processes consist of multiple distinct interconnected steps that need to be executed in a particular order
-in a distributed environment. One can describe such process as a set of tasks and task relations and upload such description
-to Mistral so that it takes care of state management, correct execution order, parallelism, synchronization and high availability.
-.
+%{common_desc}
+
 This package contains the Python libraries.
 
 %package        common
@@ -106,13 +111,8 @@ Requires:       python-%{service} = %{version}-%{release}
 %{?systemd_requires}
 
 %description    common
-Mistral is a workflow service.
-Most business processes consist of multiple distinct interconnected steps that
-need to be executed in a particular order in a distributed environment. One can
-describe such process as a set of tasks and task relations and upload such
-description to Mistral so that it takes care of state management, correct
-execution order, parallelism, synchronization and high availability.
-.
+%{common_desc}
+
 This package contains the common files.
 
 %package        api
