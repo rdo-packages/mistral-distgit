@@ -235,6 +235,7 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 mkdir -p %{buildroot}/etc/mistral/
 mkdir -p %{buildroot}/var/log/mistral
 mkdir -p %{buildroot}/var/run/mistral
+mkdir -p %{buildroot}/var/lib/mistral
 
 install -p -D -m 644 %SOURCE10 %{buildroot}%{_unitdir}/openstack-mistral-api.service
 install -p -D -m 644 %SOURCE11 %{buildroot}%{_unitdir}/openstack-mistral-engine.service
@@ -315,6 +316,7 @@ exit 0
 %config(noreplace) %attr(-, mistral, mistral) %{_sysconfdir}/mistral/*
 %{_bindir}/mistral-*
 %dir %attr(755, mistral, mistral) /var/run/mistral
+%dir %attr(755, mistral, mistral) /var/lib/mistral
 %dir %attr(750, mistral, mistral) /var/log/mistral
 
 
