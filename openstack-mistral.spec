@@ -18,6 +18,7 @@ Summary:        Task Orchestration and Scheduling service for OpenStack cloud
 License:        ASL 2.0
 URL:            https://launchpad.net/mistral
 Source0:        https://tarballs.openstack.org/%{service}/%{service}-%{upstream_version}.tar.gz
+Source1:        mistral.logrotate
 # Systemd scripts
 Source10:       openstack-mistral-api.service
 Source11:       openstack-mistral-engine.service
@@ -244,6 +245,7 @@ install -p -D -m 644 %SOURCE12 %{buildroot}%{_unitdir}/openstack-mistral-executo
 install -p -D -m 644 %SOURCE13 %{buildroot}%{_unitdir}/openstack-mistral-all.service
 install -p -D -m 644 %SOURCE14 %{buildroot}%{_unitdir}/openstack-mistral-event-engine.service
 
+install -p -D -m 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/logrotate.d/openstack-mistral
 install -p -D -m 640 etc/mistral.conf.sample \
                      %{buildroot}%{_sysconfdir}/mistral/mistral.conf
 install -p -D -m 640 etc/logging.conf.sample \
@@ -315,6 +317,7 @@ exit 0
 %files common
 %dir %{_sysconfdir}/mistral
 %config(noreplace) %attr(-, mistral, mistral) %{_sysconfdir}/mistral/*
+%config(noreplace) %{_sysconfdir}/logrotate.d/openstack-mistral
 %{_bindir}/mistral-*
 %dir %attr(755, mistral, mistral) /var/run/mistral
 %dir %attr(750, mistral, mistral) /var/lib/mistral
