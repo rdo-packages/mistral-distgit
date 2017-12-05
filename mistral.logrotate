@@ -1,0 +1,7 @@
+/var/log/mistral/*.log {
+    rotate 20
+    size 20M
+    missingok
+    compress
+    copytruncate
+}
