@@ -212,6 +212,10 @@ This package contains the documentation.
 %prep
 %autosetup -n mistral-%{upstream_version} -S git
 
+# Remove tempest plugin entrypoint as a workaround
+sed -i '/tempest/d' setup.cfg
+rm -rf mistral_tempest_tests
+
 sed -i '1i #!/usr/bin/python' tools/sync_db.py
 
 %py_req_cleanup
@@ -223,9 +227,6 @@ oslo-config-generator --config-file tools/config/config-generator.mistral.conf \
 
 %install
 %{__python2} setup.py install -O1 --skip-build --root %{buildroot}
-
-# Create fake egg-info for the tempest plugin
-%py2_entrypoint %{service} %{service}
 
 %if 0%{?with_doc}
 %{__python2} setup.py build_sphinx -b html
@@ -342,12 +343,9 @@ exit 0
 %{python2_sitelib}/%{service}
 %{python2_sitelib}/%{service}-*.egg-info
 %exclude %{python2_sitelib}/mistral/tests
-%exclude %{python2_sitelib}/mistral_tempest_tests
 
 %files -n python-mistral-tests
 %license LICENSE
 %{python2_sitelib}/mistral/tests
-%{python2_sitelib}/mistral_tempest_tests
-%{python2_sitelib}/%{service}_tests.egg-info
 
 %changelog
