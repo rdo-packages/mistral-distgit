@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a72e520_e8c0ab2c",
+        "filename": "openstack-mistral.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2017-12-20T14:28:17Z",
+      "side": 1,
+      "message": "Remember to remove these lines after upstream patch removing tempest plugin from mistral repo is merged.",
+      "range": {
+        "startLine": 215,
+        "startChar": 0,
+        "endLine": 217,
+        "endChar": 28
+      },
+      "revId": "2f51dfe80f15b2b966771384c24bf73ca49d2052",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
