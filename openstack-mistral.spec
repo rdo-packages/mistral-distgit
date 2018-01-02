@@ -25,6 +25,7 @@ Source11:       openstack-mistral-engine.service
 Source12:       openstack-mistral-executor.service
 Source13:       openstack-mistral-all.service
 Source14:       openstack-mistral-event-engine.service
+Patch0:         0001-Add-missing-user-project-name-in-action-context.patch
 
 BuildArch:      noarch
 
@@ -212,6 +213,7 @@ This package contains the documentation.
 
 %prep
 %autosetup -n mistral-%{upstream_version} -S git
+%patch0 -p1
 
 # Remove tempest plugin entrypoint as a workaround
 sed -i '/tempest/d' setup.cfg
