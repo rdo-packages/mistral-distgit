@@ -214,10 +214,6 @@ This package contains the documentation.
 %prep
 %autosetup -n mistral-%{upstream_version} -S git
 
-# Remove tempest plugin entrypoint as a workaround
-sed -i '/tempest/d' setup.cfg
-rm -rf mistral_tempest_tests
-
 sed -i '1i #!/usr/bin/python' tools/sync_db.py
 
 %py_req_cleanup
