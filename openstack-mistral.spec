@@ -349,3 +349,4 @@ exit 0
 %{python2_sitelib}/mistral/tests
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/mistral/commit/?id=6b81707ce1ea49134ae0def3f05a2cf15b9626db
