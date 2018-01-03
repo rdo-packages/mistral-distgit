@@ -25,7 +25,6 @@ Source11:       openstack-mistral-engine.service
 Source12:       openstack-mistral-executor.service
 Source13:       openstack-mistral-all.service
 Source14:       openstack-mistral-event-engine.service
-Patch0:         0001-Add-missing-user-project-name-in-action-context.patch
 
 BuildArch:      noarch
 
