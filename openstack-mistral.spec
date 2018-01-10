@@ -84,7 +84,6 @@ Requires:       python-stevedore >= 1.20.0
 Requires:       python-tooz >= 1.47.0
 Requires:       python-aodhclient >= 0.7.0
 Requires:       python-barbicanclient >= 4.0.0
-Requires:       python-ceilometerclient >= 2.5.0
 Requires:       python-cinderclient >= 3.1.0
 Requires:       python-glanceclient >= 1:2.8.0
 Requires:       python-gnocchiclient >= 2.7.0
