@@ -1,5 +1,6 @@
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global service mistral
+%global rhosp 0
 
 %global with_doc 1
 
@@ -30,9 +31,9 @@ BuildArch:      noarch
 
 BuildRequires:  git
 BuildRequires:  openstack-macros
-BuildRequires:  python-devel
-BuildRequires:  python-oslo-config >= 2:4.0.0
-BuildRequires:  python-pbr >= 2.0.0
+BuildRequires:  python2-devel
+BuildRequires:  python2-oslo-config >= 2:5.1.0
+BuildRequires:  python2-pbr >= 2.0.0
 BuildRequires:  systemd
 
 %description
@@ -44,60 +45,70 @@ Summary:        Mistral Python libraries
 Provides:       python-%{name} = %{version}-%{release}
 Obsoletes:      python-%{name} < 5.0.0-1
 
-Requires:       python-alembic >= 0.8.7
-Requires:       python-babel >= 2.3.4
-Requires:       python-croniter >= 0.3.4
-Requires:       python-cachetools >= 1.1.0
-Requires:       python-eventlet >= 0.18.2
-Requires:       python-iso8601 >= 0.1.9
-Requires:       python-jinja2
-Requires:       python-jsonschema >= 2.0.0
-Requires:       python-kombu
-Requires:       python-mock
+Requires:       python2-alembic >= 0.8.10
+Requires:       python2-babel >= 2.3.4
+Requires:       python2-croniter >= 0.3.4
+Requires:       python-cachetools >= 2.0.0
+Requires:       python2-eventlet >= 0.18.2
+Requires:       python2-iso8601 >= 0.1.9
+Requires:       python2-jinja2
+Requires:       python2-jsonschema >= 2.6.0
+Requires:       python2-kombu
+Requires:       python2-mock
 Requires:       python-networkx >= 1.10
-Requires:       python-paramiko >= 2.0
-Requires:       python-pbr >= 2.0.0
-Requires:       python-pecan >= 1.0.0
-Requires:       python-requests >= 2.10.0
+Requires:       python2-paramiko >= 2.0
+Requires:       python2-pbr >= 2.0.0
+Requires:       python2-pecan >= 1.0.0
+Requires:       python2-requests >= 2.14.2
 Requires:       python-retrying >= 1.2.3
-Requires:       python-six >= 1.9.0
-Requires:       python-sqlalchemy >= 1.0.10
-Requires:       python-tenacity >= 3.2.1
-Requires:       python-wsme >= 0.8
-Requires:       python-yaql >= 1.1.0
+Requires:       python2-six >= 1.10.0
+Requires:       python2-sqlalchemy >= 1.0.10
+Requires:       python2-tenacity >= 3.2.1
+Requires:       python2-wsme >= 0.8
+Requires:       python2-yaql >= 1.1.3
 Requires:       PyYAML >= 3.10
 # OpenStack dependencies
-Requires:       python-oslo-concurrency >= 3.8.0
-Requires:       python-oslo-config >= 2:4.0.0
-Requires:       python-oslo-context >= 2.14.0
-Requires:       python-oslo-db >= 4.24.0
-Requires:       python-oslo-i18n >= 2.1.0
-Requires:       python-oslo-middleware >= 3.27.0
-Requires:       python-oslo-messaging >= 5.24.2
-Requires:       python-oslo-utils >= 3.20.0
-Requires:       python-oslo-log >= 3.22.0
-Requires:       python-oslo-serialization >= 1.10.0
-Requires:       python-oslo-service >= 1.10.0
-Requires:       python-oslo-policy >= 1.23.0
-Requires:       python-osprofiler >= 1.4.0
-Requires:       python-stevedore >= 1.20.0
-Requires:       python-tooz >= 1.47.0
-Requires:       python-aodhclient >= 0.7.0
-Requires:       python-barbicanclient >= 4.0.0
-Requires:       python-cinderclient >= 3.1.0
-Requires:       python-glanceclient >= 1:2.8.0
-Requires:       python-gnocchiclient >= 2.7.0
-Requires:       python-ironicclient >= 1.14.0
+Requires:       python2-oslo-concurrency >= 3.25.0
+Requires:       python2-oslo-config >= 2:5.1.0
+Requires:       python2-oslo-context >= 2.19.2
+Requires:       python2-oslo-db >= 4.27.0
+Requires:       python2-oslo-i18n >= 3.15.3
+Requires:       python2-oslo-middleware >= 3.31.0
+Requires:       python2-oslo-messaging >= 5.29.0
+Requires:       python2-oslo-utils >= 3.33.0
+Requires:       python2-oslo-log >= 3.36.0
+Requires:       python2-oslo-serialization >= 2.18.0
+Requires:       python2-oslo-service >= 1.24.0
+Requires:       python2-oslo-policy >= 1.30.0
+Requires:       python2-osprofiler >= 1.4.0
+Requires:       python2-stevedore >= 1.20.0
+Requires:       python2-tooz >= 1.58.0
+Requires:       python2-aodhclient >= 0.9.0
+Requires:       python2-barbicanclient >= 4.0.0
+Requires:       python2-cinderclient >= 3.3.0
+Requires:       python2-glanceclient >= 1:2.8.0
+Requires:       python2-gnocchiclient >= 3.3.1
+Requires:       python2-ironicclient >= 2.2.0
 Requires:       python-ironic-inspector-client >= 1.5.0
-Requires:       python-heatclient >= 1.6.1
-Requires:       python-keystoneclient >= 1:3.8.0
-Requires:       python-keystonemiddleware >= 4.12.0
-Requires:       python-neutronclient >= 6.3.0
-Requires:       python-novaclient >= 1:9.0.0
-Requires:       python-swiftclient >= 3.2.0
-Requires:       python-zaqarclient >= 1.0.0
-Requires:       python-mistralclient >= 3.1.0
-Requires:       python-mistral-lib >= 0.2.0
+Requires:       python2-heatclient >= 1.10.0
+Requires:       python2-keystoneclient >= 1:3.8.0
+Requires:       python2-keystonemiddleware >= 4.17.0
+Requires:       python2-neutronclient >= 6.3.0
+Requires:       python2-novaclient >= 1:9.1.0
+Requires:       python2-swiftclient >= 3.2.0
+Requires:       python2-zaqarclient >= 1.0.0
+Requires:       python2-mistralclient >= 3.1.0
+Requires:       python2-mistral-lib >= 0.3.0
+Requires:       python-jwt >= 1.0.1
+Requires:       python2-designateclient >= 2.7.0
+Requires:       python2-magnumclient >= 2.1.0
+%if 0%{rhosp} == 0
+Requires:       python2-glareclient >= 0.3.0
+Requires:       python2-muranoclient >= 0.8.2
+Requires:       python2-senlinclient >= 1.1.0
+Requires:       python2-tackerclient >= 0.8.0
+%endif
+Requires:       python2-troveclient >= 2.2.0
 
 %description -n python-%{service}
 %{common_desc}
@@ -181,25 +192,25 @@ This package contains the mistral test files.
 %package        doc
 Summary:        Documentation for OpenStack Workflow Service
 
-BuildRequires:  python-sphinx
-BuildRequires:  python-openstackdocstheme
+BuildRequires:  python2-sphinx
+BuildRequires:  python2-openstackdocstheme
 BuildRequires:  python-sphinxcontrib-httpdomain
-BuildRequires:  python-sphinxcontrib-pecanwsme
+BuildRequires:  python2-sphinxcontrib-pecanwsme
 BuildRequires:  python2-wsme
-BuildRequires:  python-croniter
-BuildRequires:  python-eventlet
-BuildRequires:  python-jsonschema
-BuildRequires:  python-keystoneclient
-BuildRequires:  python-keystonemiddleware
-BuildRequires:  python-mistral-lib
-BuildRequires:  python-oslo-db
-BuildRequires:  python-oslo-log
-BuildRequires:  python-oslo-messaging
-BuildRequires:  python-oslo-policy
-BuildRequires:  python-osprofiler
-BuildRequires:  python-pecan
-BuildRequires:  python-tooz
-BuildRequires:  python-yaql
+BuildRequires:  python2-croniter
+BuildRequires:  python2-eventlet
+BuildRequires:  python2-jsonschema
+BuildRequires:  python2-keystoneclient
+BuildRequires:  python2-keystonemiddleware
+BuildRequires:  python2-mistral-lib
+BuildRequires:  python2-oslo-db
+BuildRequires:  python2-oslo-log
+BuildRequires:  python2-oslo-messaging
+BuildRequires:  python2-oslo-policy
+BuildRequires:  python2-osprofiler
+BuildRequires:  python2-pecan
+BuildRequires:  python2-tooz
+BuildRequires:  python2-yaql
 BuildRequires:  python-networkx
 BuildRequires:  openstack-macros
 
