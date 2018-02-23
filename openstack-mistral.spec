@@ -82,7 +82,7 @@ Requires:       python2-oslo-service >= 1.24.0
 Requires:       python2-oslo-policy >= 1.30.0
 Requires:       python2-osprofiler >= 1.4.0
 Requires:       python2-stevedore >= 1.20.0
-Requires:       python2-tooz >= 1.58.0
+Requires:       python-tooz >= 1.58.0
 Requires:       python2-aodhclient >= 0.9.0
 Requires:       python2-barbicanclient >= 4.0.0
 Requires:       python2-cinderclient >= 3.3.0
@@ -209,7 +209,7 @@ BuildRequires:  python2-oslo-messaging
 BuildRequires:  python2-oslo-policy
 BuildRequires:  python2-osprofiler
 BuildRequires:  python2-pecan
-BuildRequires:  python2-tooz
+BuildRequires:  python-tooz
 BuildRequires:  python2-yaql
 BuildRequires:  python-networkx
 BuildRequires:  openstack-macros
