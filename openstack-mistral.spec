@@ -88,7 +88,9 @@ Requires:       python2-barbicanclient >= 4.0.0
 Requires:       python2-cinderclient >= 3.3.0
 Requires:       python2-glanceclient >= 1:2.8.0
 Requires:       python2-gnocchiclient >= 3.3.1
-Requires:       python2-ironicclient >= 2.2.0
+# TODO (amoraje) move ironicclient back to 2.2.0 after next promotion
+#Requires:       python2-ironicclient >= 2.2.0
+Requires:       python2-ironicclient >= 2.1.0
 Requires:       python-ironic-inspector-client >= 1.5.0
 Requires:       python2-heatclient >= 1.10.0
 Requires:       python2-keystoneclient >= 1:3.8.0
