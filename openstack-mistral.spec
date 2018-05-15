@@ -35,6 +35,7 @@ BuildRequires:  python2-devel
 BuildRequires:  python2-oslo-config >= 2:5.1.0
 BuildRequires:  python2-pbr >= 2.0.0
 BuildRequires:  systemd
+BuildRequires:  python-enum34
 
 %description
 %{summary}
