@@ -101,6 +101,7 @@ Requires:       python2-swiftclient >= 3.2.0
 Requires:       python2-zaqarclient >= 1.0.0
 Requires:       python2-mistralclient >= 3.1.0
 Requires:       python2-mistral-lib >= 0.3.0
+Requires:       python2-mistral-extra >= 7.0.0
 Requires:       python-jwt >= 1.0.1
 Requires:       python2-designateclient >= 2.7.0
 Requires:       python2-magnumclient >= 2.1.0
@@ -205,6 +206,7 @@ BuildRequires:  python2-jsonschema
 BuildRequires:  python2-keystoneclient
 BuildRequires:  python2-keystonemiddleware
 BuildRequires:  python2-mistral-lib
+BuildRequires:  python2-mistral-extra
 BuildRequires:  python2-oslo-db
 BuildRequires:  python2-oslo-log
 BuildRequires:  python2-oslo-messaging
