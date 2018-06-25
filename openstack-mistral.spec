@@ -276,7 +276,7 @@ install -p -D -m 644 ./mistral/resources/actions/* %{buildroot}/%{python2_siteli
 %pre common
 USERNAME=mistral
 GROUPNAME=$USERNAME
-HOMEDIR=/home/$USERNAME
+HOMEDIR=/var/lib/mistral
 getent group $GROUPNAME >/dev/null || groupadd -r $GROUPNAME
 getent passwd $USERNAME >/dev/null ||
     useradd -r -g $GROUPNAME -G $GROUPNAME -d $HOMEDIR -s /sbin/nologin \
