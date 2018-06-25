@@ -290,11 +290,15 @@ install -p -D -m 644 ./mistral/resources/actions/* %{buildroot}/%{python2_siteli
 %pre common
 USERNAME=mistral
 GROUPNAME=$USERNAME
-HOMEDIR=/home/$USERNAME
+HOMEDIR=/var/lib/mistral
 getent group $GROUPNAME >/dev/null || groupadd -r $GROUPNAME
 getent passwd $USERNAME >/dev/null ||
     useradd -r -g $GROUPNAME -G $GROUPNAME -d $HOMEDIR -s /sbin/nologin \
             -c "Mistral Daemons" $USERNAME
+# Related Bug LP#1778269
+if [ "$(getent passwd $USERNAME | cut -d: -f6)" != "$HOMEDIR" ]; then
+    usermod -m -d $HOMEDIR $USERNAME
+fi
 exit 0
 
 
