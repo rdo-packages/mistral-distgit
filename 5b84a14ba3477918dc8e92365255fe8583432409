@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bab921fb_3135fb45",
+        "filename": "openstack-mistral.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 303
+      },
+      "writtenOn": "2018-06-25T15:31:24Z",
+      "side": 1,
+      "message": "Is there a good way to switch this on package upgrades?",
+      "revId": "5b84a14ba3477918dc8e92365255fe8583432409",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
