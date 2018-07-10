@@ -238,7 +238,8 @@ oslo-config-generator --config-file tools/config/config-generator.mistral.conf \
 %{__python2} setup.py install -O1 --skip-build --root %{buildroot}
 
 %if 0%{?with_doc}
-%{__python2} setup.py build_sphinx -b html
+export PYTHONPATH=.
+sphinx-build -W -b html doc/source doc/build/html
 rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
 
