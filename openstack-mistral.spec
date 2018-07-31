@@ -26,6 +26,7 @@ Source11:       openstack-mistral-engine.service
 Source12:       openstack-mistral-executor.service
 Source13:       openstack-mistral-all.service
 Source14:       openstack-mistral-event-engine.service
+Source15:       openstack-mistral-notifier.service
 
 BuildArch:      noarch
 
@@ -171,6 +172,17 @@ Openstack Mistral Event Engine service.
 This package contains the mistral event engine, which is one of the core
 services of mistral.
 
+%package        notifier
+Summary: Openstack Mistral Notifier daemon
+
+Requires:       %{name}-common = %{version}-%{release}
+
+%description    notifier
+Openstack Mistral Notifier service.
+.
+This package contains the mistral notifier, which is one of the core
+services of mistral.
+
 %package        all
 Summary: OpenStack Mistral All-in-one daemon
 
@@ -253,6 +265,7 @@ install -p -D -m 644 %SOURCE11 %{buildroot}%{_unitdir}/openstack-mistral-engine.
 install -p -D -m 644 %SOURCE12 %{buildroot}%{_unitdir}/openstack-mistral-executor.service
 install -p -D -m 644 %SOURCE13 %{buildroot}%{_unitdir}/openstack-mistral-all.service
 install -p -D -m 644 %SOURCE14 %{buildroot}%{_unitdir}/openstack-mistral-event-engine.service
+install -p -D -m 644 %SOURCE14 %{buildroot}%{_unitdir}/openstack-mistral-notifier.service
 
 install -p -D -m 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/logrotate.d/openstack-mistral
 install -p -D -m 640 etc/mistral.conf.sample \
@@ -313,6 +326,13 @@ exit 0
 %postun event-engine
 %systemd_postun_with_restart openstack-mistral-event-engine.service
 
+%post notifier
+%systemd_post openstack-mistral-notifier.service
+%preun notifier
+%systemd_preun openstack-mistral-notifier.service
+%postun notifier
+%systemd_postun_with_restart openstack-mistral-notifier.service
+
 %post all
 %systemd_post openstack-mistral-all.service
 %preun all
@@ -346,6 +366,9 @@ exit 0
 
 %files event-engine
 %config(noreplace) %attr(-, root, root) %{_unitdir}/openstack-mistral-event-engine.service
+
+%files notifier
+%config(noreplace) %attr(-, root, root) %{_unitdir}/openstack-mistral-notifier.service
 
 %files all
 %config(noreplace) %attr(-, root, root) %{_unitdir}/openstack-mistral-all.service
