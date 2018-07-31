@@ -1,0 +1,12 @@
+[Unit]
+Description=Mistral Notifier Server
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=mistral
+ExecStart=/usr/bin/mistral-server --config-file=/etc/mistral/mistral.conf --log-file=/var/log/mistral/notifier.log --server=notifier
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
