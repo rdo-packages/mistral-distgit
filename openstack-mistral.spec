@@ -1,3 +1,14 @@
+# Macros for py2/py3 compatibility
+%if 0%{?fedora} || 0%{?rhel} > 7
+%global pydefault 3
+%else
+%global pydefault 2
+%endif
+
+%global pydefault_bin python%{pydefault}
+%global pydefault_sitelib %python%{pydefault}_sitelib
+# End of macros for py2/py3 compatibility
+
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global service mistral
 %global rhosp 0
@@ -31,88 +42,98 @@ BuildArch:      noarch
 
 BuildRequires:  git
 BuildRequires:  openstack-macros
-BuildRequires:  python2-devel
-BuildRequires:  python2-oslo-config >= 2:5.1.0
-BuildRequires:  python2-pbr >= 2.0.0
+BuildRequires:  python%{pydefault}-devel
+BuildRequires:  python%{pydefault}-oslo-config >= 2:5.1.0
+BuildRequires:  python%{pydefault}-pbr >= 2.0.0
 BuildRequires:  systemd
 
 %description
 %{summary}
 
 
-%package -n     python-%{service}
+%package -n     python%{pydefault}-%{service}
 Summary:        Mistral Python libraries
+%{?python_provide:%python_provide python%{pydefault}-%{service}}
 Provides:       python-%{name} = %{version}-%{release}
 Obsoletes:      python-%{name} < 5.0.0-1
 
-Requires:       python2-alembic >= 0.8.10
-Requires:       python2-babel >= 2.3.4
-Requires:       python2-croniter >= 0.3.4
-Requires:       python-cachetools >= 2.0.0
-Requires:       python2-eventlet >= 0.18.2
-Requires:       python2-iso8601 >= 0.1.9
-Requires:       python2-jinja2
-Requires:       python2-jsonschema >= 2.6.0
-Requires:       python2-kombu
-Requires:       python2-mock
-Requires:       python-networkx >= 1.10
-Requires:       python2-paramiko >= 2.0
-Requires:       python2-pbr >= 2.0.0
-Requires:       python2-pecan >= 1.0.0
-Requires:       python2-requests >= 2.14.2
-Requires:       python-retrying >= 1.2.3
-Requires:       python2-six >= 1.10.0
-Requires:       python2-sqlalchemy >= 1.0.10
-Requires:       python2-tenacity >= 3.2.1
-Requires:       python2-wsme >= 0.8
-Requires:       python2-yaql >= 1.1.3
-Requires:       PyYAML >= 3.10
+Requires:       python%{pydefault}-alembic >= 0.8.10
+Requires:       python%{pydefault}-babel >= 2.3.4
+Requires:       python%{pydefault}-croniter >= 0.3.4
+Requires:       python%{pydefault}-cachetools >= 2.0.0
+Requires:       python%{pydefault}-eventlet >= 0.18.2
+Requires:       python%{pydefault}-iso8601 >= 0.1.9
+Requires:       python%{pydefault}-jinja2
+Requires:       python%{pydefault}-jsonschema >= 2.6.0
+Requires:       python%{pydefault}-kombu
+Requires:       python%{pydefault}-mock
+Requires:       python%{pydefault}-paramiko >= 2.0
+Requires:       python%{pydefault}-pbr >= 2.0.0
+Requires:       python%{pydefault}-pecan >= 1.0.0
+Requires:       python%{pydefault}-requests >= 2.14.2
+Requires:       python%{pydefault}-six >= 1.10.0
+Requires:       python%{pydefault}-sqlalchemy >= 1.0.10
+Requires:       python%{pydefault}-tenacity >= 3.2.1
+Requires:       python%{pydefault}-wsme >= 0.8
+Requires:       python%{pydefault}-yaql >= 1.1.3
 # OpenStack dependencies
-Requires:       python2-oslo-concurrency >= 3.25.0
-Requires:       python2-oslo-config >= 2:5.1.0
-Requires:       python2-oslo-context >= 2.19.2
-Requires:       python2-oslo-db >= 4.27.0
-Requires:       python2-oslo-i18n >= 3.15.3
-Requires:       python2-oslo-middleware >= 3.31.0
-Requires:       python2-oslo-messaging >= 5.29.0
-Requires:       python2-oslo-utils >= 3.33.0
-Requires:       python2-oslo-log >= 3.36.0
-Requires:       python2-oslo-serialization >= 2.18.0
-Requires:       python2-oslo-service >= 1.24.0
-Requires:       python2-oslo-policy >= 1.30.0
-Requires:       python2-osprofiler >= 1.4.0
-Requires:       python2-stevedore >= 1.20.0
-Requires:       python-tooz >= 1.58.0
-Requires:       python2-aodhclient >= 0.9.0
-Requires:       python2-barbicanclient >= 4.0.0
-Requires:       python2-cinderclient >= 3.3.0
-Requires:       python2-glanceclient >= 1:2.8.0
-Requires:       python2-gnocchiclient >= 3.3.1
+Requires:       python%{pydefault}-oslo-concurrency >= 3.25.0
+Requires:       python%{pydefault}-oslo-config >= 2:5.1.0
+Requires:       python%{pydefault}-oslo-context >= 2.19.2
+Requires:       python%{pydefault}-oslo-db >= 4.27.0
+Requires:       python%{pydefault}-oslo-i18n >= 3.15.3
+Requires:       python%{pydefault}-oslo-middleware >= 3.31.0
+Requires:       python%{pydefault}-oslo-messaging >= 5.29.0
+Requires:       python%{pydefault}-oslo-utils >= 3.33.0
+Requires:       python%{pydefault}-oslo-log >= 3.36.0
+Requires:       python%{pydefault}-oslo-serialization >= 2.18.0
+Requires:       python%{pydefault}-oslo-service >= 1.24.0
+Requires:       python%{pydefault}-oslo-policy >= 1.30.0
+Requires:       python%{pydefault}-osprofiler >= 1.4.0
+Requires:       python%{pydefault}-stevedore >= 1.20.0
+Requires:       python%{pydefault}-tooz >= 1.58.0
+Requires:       python%{pydefault}-aodhclient >= 0.9.0
+Requires:       python%{pydefault}-barbicanclient >= 4.0.0
+Requires:       python%{pydefault}-cinderclient >= 3.3.0
+Requires:       python%{pydefault}-glanceclient >= 1:2.8.0
+Requires:       python%{pydefault}-gnocchiclient >= 3.3.1
 # TODO (amoraje) move ironicclient back to 2.2.0 after next promotion
 #Requires:       python2-ironicclient >= 2.2.0
-Requires:       python2-ironicclient >= 2.1.0
-Requires:       python-ironic-inspector-client >= 1.5.0
-Requires:       python2-heatclient >= 1.10.0
-Requires:       python2-keystoneclient >= 1:3.8.0
-Requires:       python2-keystonemiddleware >= 4.17.0
-Requires:       python2-neutronclient >= 6.3.0
-Requires:       python2-novaclient >= 1:9.1.0
-Requires:       python2-swiftclient >= 3.2.0
-Requires:       python2-zaqarclient >= 1.0.0
-Requires:       python2-mistralclient >= 3.1.0
-Requires:       python2-mistral-lib >= 0.3.0
-Requires:       python-jwt >= 1.0.1
-Requires:       python2-designateclient >= 2.7.0
-Requires:       python2-magnumclient >= 2.1.0
+Requires:       python%{pydefault}-ironicclient >= 2.1.0
+Requires:       python%{pydefault}-ironic-inspector-client >= 1.5.0
+Requires:       python%{pydefault}-heatclient >= 1.10.0
+Requires:       python%{pydefault}-keystoneclient >= 1:3.8.0
+Requires:       python%{pydefault}-keystonemiddleware >= 4.17.0
+Requires:       python%{pydefault}-neutronclient >= 6.3.0
+Requires:       python%{pydefault}-novaclient >= 1:9.1.0
+Requires:       python%{pydefault}-swiftclient >= 3.2.0
+Requires:       python%{pydefault}-zaqarclient >= 1.0.0
+Requires:       python%{pydefault}-mistralclient >= 3.1.0
+Requires:       python%{pydefault}-mistral-lib >= 0.3.0
+Requires:       python%{pydefault}-designateclient >= 2.7.0
+Requires:       python%{pydefault}-magnumclient >= 2.1.0
 %if 0%{rhosp} == 0
-Requires:       python2-glareclient >= 0.3.0
-Requires:       python2-muranoclient >= 0.8.2
-Requires:       python2-senlinclient >= 1.1.0
-Requires:       python2-tackerclient >= 0.8.0
+Requires:       python%{pydefault}-glareclient >= 0.3.0
+Requires:       python%{pydefault}-muranoclient >= 0.8.2
+Requires:       python%{pydefault}-senlinclient >= 1.1.0
+Requires:       python%{pydefault}-tackerclient >= 0.8.0
 %endif
-Requires:       python2-troveclient >= 2.2.0
+Requires:       python%{pydefault}-troveclient >= 2.2.0
 
-%description -n python-%{service}
+# Handle python2 exceptions
+%if %{pydefault} == 2
+Requires:       python-jwt >= 1.0.1
+Requires:       python-retrying >= 1.2.3
+Requires:       python-networkx >= 1.10
+Requires:       PyYAML >= 3.10
+%else
+Requires:       python%{pydefault}-jwt >= 1.0.1
+Requires:       python%{pydefault}-retrying >= 1.2.3
+Requires:       python%{pydefault}-networkx >= 1.10
+Requires:       python%{pydefault}-PyYAML >= 3.10
+%endif
+
+%description -n python%{pydefault}-%{service}
 %{common_desc}
 
 This package contains the Python libraries.
@@ -120,7 +141,7 @@ This package contains the Python libraries.
 %package        common
 Summary: Components common for OpenStack Mistral
 
-Requires:       python-%{service} = %{version}-%{release}
+Requires:       python%{pydefault}-%{service} = %{version}-%{release}
 %{?systemd_requires}
 
 %description    common
@@ -182,11 +203,11 @@ OpenStack Mistral All service.
 This package contains the mistral api, engine, and executor service as
 an all-in-one process.
 
-%package -n python-mistral-tests
+%package -n python%{pydefault}-mistral-tests
 Summary:        Mistral tests
 Requires:       %{name}-common = %{version}-%{release}
 
-%description -n python-mistral-tests
+%description -n python%{pydefault}-mistral-tests
 This package contains the mistral test files.
 
 
@@ -194,27 +215,35 @@ This package contains the mistral test files.
 %package        doc
 Summary:        Documentation for OpenStack Workflow Service
 
-BuildRequires:  python2-sphinx
-BuildRequires:  python2-openstackdocstheme
-BuildRequires:  python-sphinxcontrib-httpdomain
-BuildRequires:  python2-sphinxcontrib-pecanwsme
-BuildRequires:  python2-wsme
-BuildRequires:  python2-croniter
-BuildRequires:  python2-eventlet
-BuildRequires:  python2-jsonschema
-BuildRequires:  python2-keystoneclient
-BuildRequires:  python2-keystonemiddleware
-BuildRequires:  python2-mistral-lib
-BuildRequires:  python2-oslo-db
-BuildRequires:  python2-oslo-log
-BuildRequires:  python2-oslo-messaging
-BuildRequires:  python2-oslo-policy
-BuildRequires:  python2-osprofiler
-BuildRequires:  python2-pecan
-BuildRequires:  python-tooz
-BuildRequires:  python2-yaql
-BuildRequires:  python-networkx
+BuildRequires:  python%{pydefault}-sphinx
+BuildRequires:  python%{pydefault}-openstackdocstheme
+BuildRequires:  python%{pydefault}-sphinxcontrib-pecanwsme
+BuildRequires:  python%{pydefault}-wsme
+BuildRequires:  python%{pydefault}-croniter
+BuildRequires:  python%{pydefault}-eventlet
+BuildRequires:  python%{pydefault}-jsonschema
+BuildRequires:  python%{pydefault}-keystoneclient
+BuildRequires:  python%{pydefault}-keystonemiddleware
+BuildRequires:  python%{pydefault}-mistral-lib
+BuildRequires:  python%{pydefault}-oslo-db
+BuildRequires:  python%{pydefault}-oslo-log
+BuildRequires:  python%{pydefault}-oslo-messaging
+BuildRequires:  python%{pydefault}-oslo-policy
+BuildRequires:  python%{pydefault}-osprofiler
+BuildRequires:  python%{pydefault}-pecan
+BuildRequires:  python%{pydefault}-tooz
+BuildRequires:  python%{pydefault}-yaql
 BuildRequires:  openstack-macros
+
+# Handle python2 exceptions
+%if %{pydefault} == 2
+BuildRequires:  python-sphinxcontrib-httpdomain
+BuildRequires:  python-networkx
+%else
+BuildRequires:  python%{pydefault}-sphinxcontrib-httpdomain
+BuildRequires:  python%{pydefault}-networkx
+%endif
+
 
 %description    doc
 OpenStack Mistral documentation.
@@ -230,16 +259,16 @@ sed -i '1i #!/usr/bin/python' tools/sync_db.py
 %py_req_cleanup
 
 %build
-%{__python2} setup.py build
+%{pydefault_bin} setup.py build
 oslo-config-generator --config-file tools/config/config-generator.mistral.conf \
                       --output-file etc/mistral.conf.sample
 
 %install
-%{__python2} setup.py install -O1 --skip-build --root %{buildroot}
+%{pydefault_bin} setup.py install -O1 --skip-build --root %{buildroot}
 
 %if 0%{?with_doc}
 export PYTHONPATH=.
-sphinx-build -W -b html doc/source doc/build/html
+sphinx-build-%{pydefault} -W -b html doc/source doc/build/html
 rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
 
@@ -267,12 +296,12 @@ install -p -D -m 640 tools/sync_db.py \
                      %{buildroot}/usr/bin/mistral-db-sync
 chmod +x %{buildroot}/usr/bin/mistral*
 
-install -p -D -m 644 ./mistral/actions/openstack/mapping.json %{buildroot}%{python2_sitelib}/%{service}/actions/openstack/mapping.json
-install -p -D -m 644 ./mistral/db/sqlalchemy/migration/alembic.ini %{buildroot}%{python2_sitelib}/%{service}/db/sqlalchemy/migration/alembic.ini
-mkdir -p %{buildroot}/%{python2_sitelib}/%{service}/resources/workflows/
-mkdir -p %{buildroot}/%{python2_sitelib}/%{service}/resources/actions/
-install -p -D -m 644 ./mistral/resources/workflows/* %{buildroot}/%{python2_sitelib}/%{service}/resources/workflows/
-install -p -D -m 644 ./mistral/resources/actions/* %{buildroot}/%{python2_sitelib}/%{service}/resources/actions/
+install -p -D -m 644 ./mistral/actions/openstack/mapping.json %{buildroot}%{pydefault_sitelib}/%{service}/actions/openstack/mapping.json
+install -p -D -m 644 ./mistral/db/sqlalchemy/migration/alembic.ini %{buildroot}%{pydefault_sitelib}/%{service}/db/sqlalchemy/migration/alembic.ini
+mkdir -p %{buildroot}/%{pydefault_sitelib}/%{service}/resources/workflows/
+mkdir -p %{buildroot}/%{pydefault_sitelib}/%{service}/resources/actions/
+install -p -D -m 644 ./mistral/resources/workflows/* %{buildroot}/%{pydefault_sitelib}/%{service}/resources/workflows/
+install -p -D -m 644 ./mistral/resources/actions/* %{buildroot}/%{pydefault_sitelib}/%{service}/resources/actions/
 
 %pre common
 USERNAME=mistral
@@ -351,13 +380,13 @@ exit 0
 %config(noreplace) %attr(-, root, root) %{_unitdir}/openstack-mistral-all.service
 
 
-%files -n python-%{service}
-%{python2_sitelib}/%{service}
-%{python2_sitelib}/%{service}-*.egg-info
-%exclude %{python2_sitelib}/mistral/tests
+%files -n python%{pydefault}-%{service}
+%{pydefault_sitelib}/%{service}
+%{pydefault_sitelib}/%{service}-*.egg-info
+%exclude %{pydefault_sitelib}/mistral/tests
 
-%files -n python-mistral-tests
+%files -n python%{pydefault}-mistral-tests
 %license LICENSE
-%{python2_sitelib}/mistral/tests
+%{pydefault_sitelib}/mistral/tests
 
 %changelog
