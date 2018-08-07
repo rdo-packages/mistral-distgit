@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "9abe1de1_459c4969",
+        "filename": "openstack-mistral.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2018-08-07T17:55:03Z",
+      "side": 1,
+      "message": "Might not be possible if package is in base RHEL.\n\nOther approach would be to introduce pre-processing step and handle exceptions in pymod2pkg",
+      "parentUuid": "9abe1de1_4517a9ed",
+      "revId": "3a5837498a600c672b89f3e7185710dcd21b38b8",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abe1de1_05d89152",
         "filename": "openstack-mistral.spec",
         "patchSetId": 2
