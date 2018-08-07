@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9abe1de1_25d3953a",
+        "filename": "openstack-mistral.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 127
+      },
+      "writtenOn": "2018-08-07T16:29:19Z",
+      "side": 1,
+      "message": "commented out entries like this will require manual work but should probably be cleaned up or dropped",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 46
+      },
+      "revId": "3a5837498a600c672b89f3e7185710dcd21b38b8",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
