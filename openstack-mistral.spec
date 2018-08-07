@@ -1,3 +1,16 @@
+# Macros for py2/py3 compatibility
+%if 0%{?fedora} || 0%{?rhel} > 7
+%global pyver %{python3_pkgversion}
+%else
+%global pyver 2
+%endif
+
+%global pyver_bin python%{pyver}
+%global pyver_sitelib %python%{pyver}_sitelib
+%global pyver_install %py%{pyver}_install
+%global pyver_build %py%{pyver}_build
+# End of macros for py2/py3 compatibility
+
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global service mistral
 %global rhosp 0
@@ -32,88 +45,94 @@ BuildArch:      noarch
 
 BuildRequires:  git
 BuildRequires:  openstack-macros
-BuildRequires:  python2-devel
-BuildRequires:  python2-oslo-config >= 2:5.2.0
-BuildRequires:  python2-pbr >= 2.0.0
+BuildRequires:  python%{pyver}-devel
+BuildRequires:  python%{pyver}-oslo-config >= 2:5.2.0
+BuildRequires:  python%{pyver}-pbr >= 2.0.0
 BuildRequires:  systemd
 
 %description
 %{summary}
 
 
-%package -n     python-%{service}
+%package -n     python%{pyver}-%{service}
 Summary:        Mistral Python libraries
-Provides:       python-%{name} = %{version}-%{release}
-Obsoletes:      python-%{name} < 5.0.0-1
+%{?python_provide:%python_provide python%{pyver}-%{service}}
 
-Requires:       python2-alembic >= 0.9.6
-Requires:       python2-babel >= 2.3.4
-Requires:       python2-croniter >= 0.3.4
-Requires:       python-cachetools >= 2.0.0
-Requires:       python2-eventlet >= 0.20.0
-Requires:       python2-iso8601 >= 0.1.9
-Requires:       python2-jinja2
-Requires:       python2-jsonschema >= 2.6.0
-Requires:       python2-kombu
-Requires:       python2-mock
-Requires:       python-networkx >= 1.10
-Requires:       python2-paramiko >= 2.0
-Requires:       python2-pbr >= 2.0.0
-Requires:       python2-pecan >= 1.2.1
-Requires:       python2-requests >= 2.14.2
-Requires:       python-retrying >= 1.2.3
-Requires:       python2-six >= 1.10.0
-Requires:       python2-sqlalchemy >= 1.2.5
-Requires:       python2-tenacity >= 4.4.0
-Requires:       python2-wsme >= 0.8
-Requires:       python2-yaql >= 1.1.3
-Requires:       PyYAML >= 3.10
+Requires:       python%{pyver}-alembic >= 0.9.6
+Requires:       python%{pyver}-babel >= 2.3.4
+Requires:       python%{pyver}-croniter >= 0.3.4
+Requires:       python%{pyver}-cachetools >= 2.0.0
+Requires:       python%{pyver}-eventlet >= 0.20.0
+Requires:       python%{pyver}-iso8601 >= 0.1.9
+Requires:       python%{pyver}-jinja2
+Requires:       python%{pyver}-jsonschema >= 2.6.0
+Requires:       python%{pyver}-kombu
+Requires:       python%{pyver}-mock
+Requires:       python%{pyver}-paramiko >= 2.0
+Requires:       python%{pyver}-pbr >= 2.0.0
+Requires:       python%{pyver}-pecan >= 1.2.1
+Requires:       python%{pyver}-requests >= 2.14.2
+Requires:       python%{pyver}-six >= 1.10.0
+Requires:       python%{pyver}-sqlalchemy >= 1.2.5
+Requires:       python%{pyver}-tenacity >= 4.4.0
+Requires:       python%{pyver}-wsme >= 0.8
+Requires:       python%{pyver}-yaql >= 1.1.3
 # OpenStack dependencies
-Requires:       python2-oslo-concurrency >= 3.26.0
-Requires:       python2-oslo-config >= 2:5.2.0
-Requires:       python2-oslo-context >= 2.21.0
-Requires:       python2-oslo-db >= 4.27.0
-Requires:       python2-oslo-i18n >= 3.15.3
-Requires:       python2-oslo-middleware >= 3.31.0
-Requires:       python2-oslo-messaging >= 5.29.0
-Requires:       python2-oslo-utils >= 3.33.0
-Requires:       python2-oslo-log >= 3.36.0
-Requires:       python2-oslo-serialization >= 2.18.0
-Requires:       python2-oslo-service >= 1.24.0
-Requires:       python2-oslo-policy >= 1.30.0
-Requires:       python2-osprofiler >= 1.4.0
-Requires:       python2-stevedore >= 1.20.0
-Requires:       python-tooz >= 1.58.0
-Requires:       python2-aodhclient >= 0.9.0
-Requires:       python2-barbicanclient >= 4.5.2
-Requires:       python2-cinderclient >= 3.3.0
-Requires:       python2-glanceclient >= 1:2.8.0
-Requires:       python2-gnocchiclient >= 3.3.1
-Requires:       python2-ironicclient >= 2.3.0
-Requires:       python-ironic-inspector-client >= 1.5.0
-Requires:       python2-heatclient >= 1.10.0
-Requires:       python2-keystoneclient >= 1:3.8.0
-Requires:       python2-keystonemiddleware >= 4.17.0
-Requires:       python2-neutronclient >= 6.7.0
-Requires:       python2-novaclient >= 1:9.1.0
-Requires:       python2-manilaclient >= 1.23.0
-Requires:       python2-swiftclient >= 3.2.0
-Requires:       python2-zaqarclient >= 1.0.0
-Requires:       python2-mistralclient >= 3.1.0
-Requires:       python2-mistral-lib >= 0.4.0
-Requires:       python-jwt >= 1.0.1
-Requires:       python2-designateclient >= 2.7.0
-Requires:       python2-magnumclient >= 2.1.0
+Requires:       python%{pyver}-oslo-concurrency >= 3.25.0
+Requires:       python%{pyver}-oslo-config >= 2:5.2.0
+Requires:       python%{pyver}-oslo-context >= 2.19.2
+Requires:       python%{pyver}-oslo-db >= 4.27.0
+Requires:       python%{pyver}-oslo-i18n >= 3.15.3
+Requires:       python%{pyver}-oslo-middleware >= 3.31.0
+Requires:       python%{pyver}-oslo-messaging >= 5.29.0
+Requires:       python%{pyver}-oslo-utils >= 3.33.0
+Requires:       python%{pyver}-oslo-log >= 3.36.0
+Requires:       python%{pyver}-oslo-serialization >= 2.18.0
+Requires:       python%{pyver}-oslo-service >= 1.24.0
+Requires:       python%{pyver}-oslo-policy >= 1.30.0
+Requires:       python%{pyver}-osprofiler >= 1.4.0
+Requires:       python%{pyver}-stevedore >= 1.20.0
+Requires:       python%{pyver}-tooz >= 1.58.0
+Requires:       python%{pyver}-aodhclient >= 0.9.0
+Requires:       python%{pyver}-barbicanclient >= 4.0.0
+Requires:       python%{pyver}-cinderclient >= 3.3.0
+Requires:       python%{pyver}-glanceclient >= 1:2.8.0
+Requires:       python%{pyver}-gnocchiclient >= 3.3.1
+Requires:       python%{pyver}-ironicclient >= 2.3.0
+Requires:       python%{pyver}-ironic-inspector-client >= 1.5.0
+Requires:       python%{pyver}-heatclient >= 1.10.0
+Requires:       python%{pyver}-keystoneclient >= 1:3.8.0
+Requires:       python%{pyver}-keystonemiddleware >= 4.17.0
+Requires:       python%{pyver}-neutronclient >= 6.3.0
+Requires:       python%{pyver}-novaclient >= 1:9.1.0
+Requires:       python%{pyver}-swiftclient >= 3.2.0
+Requires:       python%{pyver}-zaqarclient >= 1.0.0
+Requires:       python%{pyver}-mistralclient >= 3.1.0
+Requires:       python%{pyver}-mistral-lib >= 0.3.0
+Requires:       python%{pyver}-designateclient >= 2.7.0
+Requires:       python%{pyver}-magnumclient >= 2.1.0
 %if 0%{rhosp} == 0
-Requires:       python2-glareclient >= 0.3.0
-Requires:       python2-muranoclient >= 0.8.2
-Requires:       python2-senlinclient >= 1.1.0
-Requires:       python2-tackerclient >= 0.8.0
-Requires:       python2-vitrageclient >= 2.0.0
+Requires:       python%{pyver}-glareclient >= 0.3.0
+Requires:       python%{pyver}-muranoclient >= 0.8.2
+Requires:       python%{pyver}-senlinclient >= 1.1.0
+Requires:       python%{pyver}-tackerclient >= 0.8.0
 %endif
-Requires:       python2-troveclient >= 2.2.0
+Requires:       python%{pyver}-troveclient >= 2.2.0
 
-%description -n python-%{service}
+# Handle python2 exceptions
+%if %{pyver} == 2
+Requires:       python-jwt >= 1.0.1
+Requires:       python-retrying >= 1.2.3
+Requires:       python-networkx >= 1.10
+Requires:       PyYAML >= 3.10
+%else
+Requires:       python%{pyver}-jwt >= 1.0.1
+Requires:       python%{pyver}-retrying >= 1.2.3
+Requires:       python%{pyver}-networkx >= 1.10
+Requires:       python%{pyver}-PyYAML >= 3.10
+%endif
+
+%description -n python%{pyver}-%{service}
 %{common_desc}
 
 This package contains the Python libraries.
@@ -121,7 +140,7 @@ This package contains the Python libraries.
 %package        common
 Summary: Components common for OpenStack Mistral
 
-Requires:       python-%{service} = %{version}-%{release}
+Requires:       python%{pyver}-%{service} = %{version}-%{release}
 %{?systemd_requires}
 
 %description    common
@@ -194,11 +213,12 @@ OpenStack Mistral All service.
 This package contains the mistral api, engine, and executor service as
 an all-in-one process.
 
-%package -n python-mistral-tests
+%package -n python%{pyver}-mistral-tests
 Summary:        Mistral tests
+%{?python_provide:%python_provide python%{pyver}-mistral-tests}
 Requires:       %{name}-common = %{version}-%{release}
 
-%description -n python-mistral-tests
+%description -n python%{pyver}-mistral-tests
 This package contains the mistral test files.
 
 
@@ -206,27 +226,35 @@ This package contains the mistral test files.
 %package        doc
 Summary:        Documentation for OpenStack Workflow Service
 
-BuildRequires:  python2-sphinx
-BuildRequires:  python2-openstackdocstheme
-BuildRequires:  python-sphinxcontrib-httpdomain
-BuildRequires:  python2-sphinxcontrib-pecanwsme
-BuildRequires:  python2-wsme
-BuildRequires:  python2-croniter
-BuildRequires:  python2-eventlet
-BuildRequires:  python2-jsonschema
-BuildRequires:  python2-keystoneclient
-BuildRequires:  python2-keystonemiddleware
-BuildRequires:  python2-mistral-lib
-BuildRequires:  python2-oslo-db
-BuildRequires:  python2-oslo-log
-BuildRequires:  python2-oslo-messaging
-BuildRequires:  python2-oslo-policy
-BuildRequires:  python2-osprofiler
-BuildRequires:  python2-pecan
-BuildRequires:  python-tooz
-BuildRequires:  python2-yaql
-BuildRequires:  python-networkx
+BuildRequires:  python%{pyver}-sphinx
+BuildRequires:  python%{pyver}-openstackdocstheme
+BuildRequires:  python%{pyver}-sphinxcontrib-pecanwsme
+BuildRequires:  python%{pyver}-wsme
+BuildRequires:  python%{pyver}-croniter
+BuildRequires:  python%{pyver}-eventlet
+BuildRequires:  python%{pyver}-jsonschema
+BuildRequires:  python%{pyver}-keystoneclient
+BuildRequires:  python%{pyver}-keystonemiddleware
+BuildRequires:  python%{pyver}-mistral-lib
+BuildRequires:  python%{pyver}-oslo-db
+BuildRequires:  python%{pyver}-oslo-log
+BuildRequires:  python%{pyver}-oslo-messaging
+BuildRequires:  python%{pyver}-oslo-policy
+BuildRequires:  python%{pyver}-osprofiler
+BuildRequires:  python%{pyver}-pecan
+BuildRequires:  python%{pyver}-tooz
+BuildRequires:  python%{pyver}-yaql
 BuildRequires:  openstack-macros
+
+# Handle python2 exceptions
+%if %{pyver} == 2
+BuildRequires:  python-sphinxcontrib-httpdomain
+BuildRequires:  python-networkx
+%else
+BuildRequires:  python%{pyver}-sphinxcontrib-httpdomain
+BuildRequires:  python%{pyver}-networkx
+%endif
+
 
 %description    doc
 OpenStack Mistral documentation.
@@ -242,16 +270,17 @@ sed -i '1i #!/usr/bin/python' tools/sync_db.py
 %py_req_cleanup
 
 %build
-%{__python2} setup.py build
-oslo-config-generator --config-file tools/config/config-generator.mistral.conf \
+%{pyver_build}
+oslo-config-generator-%{pyver} --config-file tools/config/config-generator.mistral.conf \
                       --output-file etc/mistral.conf.sample
 
 %install
-%{__python2} setup.py install -O1 --skip-build --root %{buildroot}
+%{pyver_install}
+
 
 %if 0%{?with_doc}
 export PYTHONPATH=.
-sphinx-build -W -b html doc/source doc/build/html
+sphinx-build-%{pyver} -W -b html doc/source doc/build/html
 rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
 
@@ -280,12 +309,12 @@ install -p -D -m 640 tools/sync_db.py \
                      %{buildroot}/usr/bin/mistral-db-sync
 chmod +x %{buildroot}/usr/bin/mistral*
 
-install -p -D -m 644 ./mistral/actions/openstack/mapping.json %{buildroot}%{python2_sitelib}/%{service}/actions/openstack/mapping.json
-install -p -D -m 644 ./mistral/db/sqlalchemy/migration/alembic.ini %{buildroot}%{python2_sitelib}/%{service}/db/sqlalchemy/migration/alembic.ini
-mkdir -p %{buildroot}/%{python2_sitelib}/%{service}/resources/workflows/
-mkdir -p %{buildroot}/%{python2_sitelib}/%{service}/resources/actions/
-install -p -D -m 644 ./mistral/resources/workflows/* %{buildroot}/%{python2_sitelib}/%{service}/resources/workflows/
-install -p -D -m 644 ./mistral/resources/actions/* %{buildroot}/%{python2_sitelib}/%{service}/resources/actions/
+install -p -D -m 644 ./mistral/actions/openstack/mapping.json %{buildroot}%{pyver_sitelib}/%{service}/actions/openstack/mapping.json
+install -p -D -m 644 ./mistral/db/sqlalchemy/migration/alembic.ini %{buildroot}%{pyver_sitelib}/%{service}/db/sqlalchemy/migration/alembic.ini
+mkdir -p %{buildroot}/%{pyver_sitelib}/%{service}/resources/workflows/
+mkdir -p %{buildroot}/%{pyver_sitelib}/%{service}/resources/actions/
+install -p -D -m 644 ./mistral/resources/workflows/* %{buildroot}/%{pyver_sitelib}/%{service}/resources/workflows/
+install -p -D -m 644 ./mistral/resources/actions/* %{buildroot}/%{pyver_sitelib}/%{service}/resources/actions/
 
 %pre common
 USERNAME=mistral
@@ -378,13 +407,13 @@ exit 0
 %config(noreplace) %attr(-, root, root) %{_unitdir}/openstack-mistral-all.service
 
 
-%files -n python-%{service}
-%{python2_sitelib}/%{service}
-%{python2_sitelib}/%{service}-*.egg-info
-%exclude %{python2_sitelib}/mistral/tests
+%files -n python%{pyver}-%{service}
+%{pyver_sitelib}/%{service}
+%{pyver_sitelib}/%{service}-*.egg-info
+%exclude %{pyver_sitelib}/mistral/tests
 
-%files -n python-mistral-tests
+%files -n python%{pyver}-mistral-tests
 %license LICENSE
-%{python2_sitelib}/mistral/tests
+%{pyver_sitelib}/mistral/tests
 
 %changelog
