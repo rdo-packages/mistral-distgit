@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "9abe1de1_29524f14",
+        "filename": "openstack-mistral.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-08-08T09:58:32Z",
+      "side": 1,
+      "message": "yes, good to move in macro package.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 41
+      },
+      "revId": "3a5837498a600c672b89f3e7185710dcd21b38b8",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abe1de1_25d3953a",
         "filename": "openstack-mistral.spec",
         "patchSetId": 2
@@ -72,6 +95,52 @@
       "side": 1,
       "message": "I\u0027d try apply automation (using pymod2pkg or whatever is useful) to create reviews similar to this, not in spec pre-processing (in DLRN). Main reasons:\n\n- Doing magic in pre-processing requires automation to cover all different corner cases and probably still need changes in specs to get them standardize and reduce corner cases.\n- Will break non-dlrn builds (as CBS) and will require us to redo workflow for CloudSIG.\n- The more magic in pre-processing, the harder to understand how all happens for maintainers as the expected results from build will not be what they expect reading the specs.",
       "parentUuid": "9abe1de1_459c4969",
+      "revId": "3a5837498a600c672b89f3e7185710dcd21b38b8",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_6973a74e",
+        "filename": "openstack-mistral.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-08-08T09:58:32Z",
+      "side": 1,
+      "message": "python%{pydefault}-%{service}-tests",
+      "range": {
+        "startLine": 208,
+        "startChar": 34,
+        "endLine": 208,
+        "endChar": 63
+      },
+      "revId": "3a5837498a600c672b89f3e7185710dcd21b38b8",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_498fc323",
+        "filename": "openstack-mistral.spec",
+        "patchSetId": 2
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2018-08-08T09:58:32Z",
+      "side": 1,
+      "message": "should also be set to default python",
+      "range": {
+        "startLine": 258,
+        "startChar": 22,
+        "endLine": 258,
+        "endChar": 28
+      },
       "revId": "3a5837498a600c672b89f3e7185710dcd21b38b8",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
