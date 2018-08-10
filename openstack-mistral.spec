@@ -32,7 +32,7 @@ BuildArch:      noarch
 BuildRequires:  git
 BuildRequires:  openstack-macros
 BuildRequires:  python2-devel
-BuildRequires:  python2-oslo-config >= 2:5.1.0
+BuildRequires:  python2-oslo-config >= 2:5.2.0
 BuildRequires:  python2-pbr >= 2.0.0
 BuildRequires:  systemd
 
@@ -45,11 +45,11 @@ Summary:        Mistral Python libraries
 Provides:       python-%{name} = %{version}-%{release}
 Obsoletes:      python-%{name} < 5.0.0-1
 
-Requires:       python2-alembic >= 0.8.10
+Requires:       python2-alembic >= 0.9.6
 Requires:       python2-babel >= 2.3.4
 Requires:       python2-croniter >= 0.3.4
 Requires:       python-cachetools >= 2.0.0
-Requires:       python2-eventlet >= 0.18.2
+Requires:       python2-eventlet >= 0.20.0
 Requires:       python2-iso8601 >= 0.1.9
 Requires:       python2-jinja2
 Requires:       python2-jsonschema >= 2.6.0
@@ -58,19 +58,19 @@ Requires:       python2-mock
 Requires:       python-networkx >= 1.10
 Requires:       python2-paramiko >= 2.0
 Requires:       python2-pbr >= 2.0.0
-Requires:       python2-pecan >= 1.0.0
+Requires:       python2-pecan >= 1.2.1
 Requires:       python2-requests >= 2.14.2
 Requires:       python-retrying >= 1.2.3
 Requires:       python2-six >= 1.10.0
-Requires:       python2-sqlalchemy >= 1.0.10
-Requires:       python2-tenacity >= 3.2.1
+Requires:       python2-sqlalchemy >= 1.2.5
+Requires:       python2-tenacity >= 4.4.0
 Requires:       python2-wsme >= 0.8
 Requires:       python2-yaql >= 1.1.3
 Requires:       PyYAML >= 3.10
 # OpenStack dependencies
-Requires:       python2-oslo-concurrency >= 3.25.0
-Requires:       python2-oslo-config >= 2:5.1.0
-Requires:       python2-oslo-context >= 2.19.2
+Requires:       python2-oslo-concurrency >= 3.26.0
+Requires:       python2-oslo-config >= 2:5.2.0
+Requires:       python2-oslo-context >= 2.21.0
 Requires:       python2-oslo-db >= 4.27.0
 Requires:       python2-oslo-i18n >= 3.15.3
 Requires:       python2-oslo-middleware >= 3.31.0
@@ -84,23 +84,24 @@ Requires:       python2-osprofiler >= 1.4.0
 Requires:       python2-stevedore >= 1.20.0
 Requires:       python-tooz >= 1.58.0
 Requires:       python2-aodhclient >= 0.9.0
-Requires:       python2-barbicanclient >= 4.0.0
+Requires:       python2-barbicanclient >= 4.5.2
 Requires:       python2-cinderclient >= 3.3.0
 Requires:       python2-glanceclient >= 1:2.8.0
 Requires:       python2-gnocchiclient >= 3.3.1
 # TODO (amoraje) move ironicclient back to 2.2.0 after next promotion
-#Requires:       python2-ironicclient >= 2.2.0
-Requires:       python2-ironicclient >= 2.1.0
+#Requires:       python2-ironicclient >= 2.3.0
+Requires:       python2-ironicclient >= 2.3.0
 Requires:       python-ironic-inspector-client >= 1.5.0
 Requires:       python2-heatclient >= 1.10.0
 Requires:       python2-keystoneclient >= 1:3.8.0
 Requires:       python2-keystonemiddleware >= 4.17.0
-Requires:       python2-neutronclient >= 6.3.0
+Requires:       python2-neutronclient >= 6.7.0
 Requires:       python2-novaclient >= 1:9.1.0
+Requires:       python2-manilaclient >= 1.23.0
 Requires:       python2-swiftclient >= 3.2.0
 Requires:       python2-zaqarclient >= 1.0.0
 Requires:       python2-mistralclient >= 3.1.0
-Requires:       python2-mistral-lib >= 0.3.0
+Requires:       python2-mistral-lib >= 0.4.0
 Requires:       python-jwt >= 1.0.1
 Requires:       python2-designateclient >= 2.7.0
 Requires:       python2-magnumclient >= 2.1.0
@@ -109,6 +110,7 @@ Requires:       python2-glareclient >= 0.3.0
 Requires:       python2-muranoclient >= 0.8.2
 Requires:       python2-senlinclient >= 1.1.0
 Requires:       python2-tackerclient >= 0.8.0
+Requires:       python2-vitrageclient >= 2.0.0
 %endif
 Requires:       python2-troveclient >= 2.2.0
 
