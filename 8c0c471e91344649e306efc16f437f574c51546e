@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9abe1de1_3a1ee70c",
+        "filename": "openstack-mistral.spec",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2018-09-19T20:10:36Z",
+      "side": 1,
+      "message": "that\u0027s too many character for a macro repeating across so many lines\n\nwhat about pydef or pyver ?",
+      "range": {
+        "startLine": 3,
+        "startChar": 8,
+        "endLine": 3,
+        "endChar": 17
+      },
+      "revId": "8c0c471e91344649e306efc16f437f574c51546e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_5a219b4c",
+        "filename": "openstack-mistral.spec",
+        "patchSetId": 7
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2018-09-19T20:10:36Z",
+      "side": 1,
+      "message": "this was merged, so we can drop this hack?",
+      "range": {
+        "startLine": 5,
+        "startChar": 5,
+        "endLine": 5,
+        "endChar": 46
+      },
+      "revId": "8c0c471e91344649e306efc16f437f574c51546e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
