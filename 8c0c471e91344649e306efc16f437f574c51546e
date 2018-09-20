@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "9abe1de1_da048b7f",
+        "filename": "openstack-mistral.spec",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2018-09-20T08:34:13Z",
+      "side": 1,
+      "message": "i\u0027m ok with any of them, i like pyver more, wdyt. We have merged tripleo py3 conversions but we can covert to new macro names and using openstack-macros if needed.",
+      "parentUuid": "9abe1de1_3a1ee70c",
+      "range": {
+        "startLine": 3,
+        "startChar": 8,
+        "endLine": 3,
+        "endChar": 17
+      },
+      "revId": "8c0c471e91344649e306efc16f437f574c51546e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abe1de1_5a219b4c",
         "filename": "openstack-mistral.spec",
         "patchSetId": 7
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "9abe1de1_fad86f1f",
+        "filename": "openstack-mistral.spec",
+        "patchSetId": 7
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2018-09-20T08:34:13Z",
+      "side": 1,
+      "message": "yeap",
+      "parentUuid": "9abe1de1_5a219b4c",
+      "range": {
+        "startLine": 5,
+        "startChar": 5,
+        "endLine": 5,
+        "endChar": 46
+      },
+      "revId": "8c0c471e91344649e306efc16f437f574c51546e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9abe1de1_9addf344",
         "filename": "openstack-mistral.spec",
         "patchSetId": 7
@@ -82,6 +130,24 @@
       "writtenOn": "2018-09-19T20:29:27Z",
       "side": 1,
       "message": "Why do we need this line, doesn\u0027t above macro handle that?\nAlso that would be wrong for pydefault\u003d3 ?",
+      "revId": "8c0c471e91344649e306efc16f437f574c51546e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_1adc4311",
+        "filename": "openstack-mistral.spec",
+        "patchSetId": 7
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2018-09-20T08:34:13Z",
+      "side": 1,
+      "message": "This provides/obsoletes is for python-%{name}, not python-%{service}, which is different. I guess it\u0027s here because of historical reasons, i\u0027m not sure if it\u0027s still used somewhere or we can totally get rid of it.",
+      "parentUuid": "9abe1de1_9addf344",
       "revId": "8c0c471e91344649e306efc16f437f574c51546e",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
