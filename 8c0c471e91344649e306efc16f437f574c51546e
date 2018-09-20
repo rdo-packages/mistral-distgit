@@ -151,6 +151,24 @@
       "revId": "8c0c471e91344649e306efc16f437f574c51546e",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9abe1de1_da2b6bea",
+        "filename": "openstack-mistral.spec",
+        "patchSetId": 7
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2018-09-20T08:42:21Z",
+      "side": 1,
+      "message": "I don\u0027t find any reference to python-openstack-mistral both in codesearch.o.o or in codesearch.r.o so i guess we can totally get rid of these provides/obsoletes.",
+      "parentUuid": "9abe1de1_1adc4311",
+      "revId": "8c0c471e91344649e306efc16f437f574c51546e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
