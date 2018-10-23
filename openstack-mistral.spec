@@ -67,7 +67,6 @@ Requires:       python%{pyver}-iso8601 >= 0.1.9
 Requires:       python%{pyver}-jinja2
 Requires:       python%{pyver}-jsonschema >= 2.6.0
 Requires:       python%{pyver}-kombu
-Requires:       python%{pyver}-mock
 Requires:       python%{pyver}-paramiko >= 2.0
 Requires:       python%{pyver}-pbr >= 2.0.0
 Requires:       python%{pyver}-pecan >= 1.2.1
@@ -217,6 +216,7 @@ an all-in-one process.
 Summary:        Mistral tests
 %{?python_provide:%python_provide python%{pyver}-mistral-tests}
 Requires:       %{name}-common = %{version}-%{release}
+Requires:       python%{pyver}-mock
 
 %description -n python%{pyver}-mistral-tests
 This package contains the mistral test files.
