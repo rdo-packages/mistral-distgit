@@ -57,7 +57,6 @@ Requires:       python2-iso8601 >= 0.1.9
 Requires:       python2-jinja2
 Requires:       python2-jsonschema >= 2.6.0
 Requires:       python2-kombu
-Requires:       python2-mock
 Requires:       python-networkx >= 1.10
 Requires:       python2-paramiko >= 2.0
 Requires:       python2-pbr >= 2.0.0
@@ -199,6 +198,7 @@ an all-in-one process.
 %package -n python-mistral-tests
 Summary:        Mistral tests
 Requires:       %{name}-common = %{version}-%{release}
+Requires:       python2-mock
 
 %description -n python-mistral-tests
 This package contains the mistral test files.
