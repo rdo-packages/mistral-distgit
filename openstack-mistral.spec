@@ -4,7 +4,7 @@
 %global with_doc 1
 
 Name:           openstack-mistral
-Version:        5.2.6
+Version:        5.2.7
 Release:        1%{?dist}
 Summary:        Task Orchestration and Scheduling service for OpenStack cloud
 License:        ASL 2.0
@@ -359,6 +359,9 @@ exit 0
 %{python2_sitelib}/%{service}_tests.egg-info
 
 %changelog
+* Tue Nov 06 2018 RDO <dev@lists.rdoproject.org> 5.2.7-1
+- Update to 5.2.7
+
 * Mon Oct 08 2018 RDO <dev@lists.rdoproject.org> 5.2.6-1
 - Update to 5.2.6
 
