@@ -145,7 +145,11 @@ This package contains the Python libraries.
 Summary: Components common for OpenStack Mistral
 
 Requires:       python%{pyver}-%{service} = %{version}-%{release}
+%if 0%{?rhel} && 0%{?rhel} < 8
 %{?systemd_requires}
+%else
+%{?systemd_ordering} # does not exist on EL7
+%endif
 
 %description    common
 %{common_desc}
