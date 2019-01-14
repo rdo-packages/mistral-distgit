@@ -50,6 +50,10 @@ BuildRequires:  python%{pyver}-oslo-config >= 2:5.2.0
 BuildRequires:  python%{pyver}-pbr >= 2.0.0
 BuildRequires:  systemd
 
+%if %{pyver} == 3
+BuildRequires:  /usr/bin/pathfix.py
+%endif
+
 %description
 %{summary}
 
@@ -308,6 +312,11 @@ install -p -D -m 640 etc/policy.json \
 install -p -D -m 640 tools/sync_db.py \
                      %{buildroot}/usr/bin/mistral-db-sync
 chmod +x %{buildroot}/usr/bin/mistral*
+
+%if %{pyver} == 3
+# Fix shebangs for Python 3-only distros
+pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}/usr/bin/mistral-db-sync
+%endif
 
 install -p -D -m 644 ./mistral/actions/openstack/mapping.json %{buildroot}%{pyver_sitelib}/%{service}/actions/openstack/mapping.json
 install -p -D -m 644 ./mistral/db/sqlalchemy/migration/alembic.ini %{buildroot}%{pyver_sitelib}/%{service}/db/sqlalchemy/migration/alembic.ini
