@@ -71,19 +71,20 @@ Requires:       python%{pyver}-iso8601 >= 0.1.9
 Requires:       python%{pyver}-jinja2
 Requires:       python%{pyver}-jsonschema >= 2.6.0
 Requires:       python%{pyver}-kombu
-Requires:       python%{pyver}-paramiko >= 2.0
+Requires:       python%{pyver}-paramiko >= 2.0.0
 Requires:       python%{pyver}-pbr >= 2.0.0
 Requires:       python%{pyver}-pecan >= 1.2.1
 Requires:       python%{pyver}-requests >= 2.14.2
 Requires:       python%{pyver}-six >= 1.10.0
 Requires:       python%{pyver}-sqlalchemy >= 1.2.5
 Requires:       python%{pyver}-tenacity >= 4.4.0
-Requires:       python%{pyver}-wsme >= 0.8
+Requires:       python%{pyver}-wsme >= 0.8.0
 Requires:       python%{pyver}-yaql >= 1.1.3
+Requires:       python%{pyver}-dogpile-cache
 # OpenStack dependencies
-Requires:       python%{pyver}-oslo-concurrency >= 3.25.0
+Requires:       python%{pyver}-oslo-concurrency >= 3.26.0
 Requires:       python%{pyver}-oslo-config >= 2:5.2.0
-Requires:       python%{pyver}-oslo-context >= 2.19.2
+Requires:       python%{pyver}-oslo-context >= 2.20.0
 Requires:       python%{pyver}-oslo-db >= 4.27.0
 Requires:       python%{pyver}-oslo-i18n >= 3.15.3
 Requires:       python%{pyver}-oslo-middleware >= 3.31.0
@@ -97,7 +98,7 @@ Requires:       python%{pyver}-osprofiler >= 1.4.0
 Requires:       python%{pyver}-stevedore >= 1.20.0
 Requires:       python%{pyver}-tooz >= 1.58.0
 Requires:       python%{pyver}-aodhclient >= 0.9.0
-Requires:       python%{pyver}-barbicanclient >= 4.0.0
+Requires:       python%{pyver}-barbicanclient >= 4.5.2
 Requires:       python%{pyver}-cinderclient >= 3.3.0
 Requires:       python%{pyver}-glanceclient >= 1:2.8.0
 Requires:       python%{pyver}-gnocchiclient >= 3.3.1
@@ -105,20 +106,22 @@ Requires:       python%{pyver}-ironicclient >= 2.3.0
 Requires:       python%{pyver}-ironic-inspector-client >= 1.5.0
 Requires:       python%{pyver}-heatclient >= 1.10.0
 Requires:       python%{pyver}-keystoneclient >= 1:3.8.0
-Requires:       python%{pyver}-keystonemiddleware >= 4.17.0
-Requires:       python%{pyver}-neutronclient >= 6.3.0
+Requires:       python%{pyver}-keystonemiddleware >= 4.18.0
+Requires:       python%{pyver}-neutronclient >= 6.7.0
 Requires:       python%{pyver}-novaclient >= 1:9.1.0
 Requires:       python%{pyver}-swiftclient >= 3.2.0
 Requires:       python%{pyver}-zaqarclient >= 1.0.0
 Requires:       python%{pyver}-mistralclient >= 3.1.0
-Requires:       python%{pyver}-mistral-lib >= 0.3.0
+Requires:       python%{pyver}-mistral-lib >= 0.4.0
 Requires:       python%{pyver}-designateclient >= 2.7.0
 Requires:       python%{pyver}-magnumclient >= 2.1.0
+Requires:       python%{pyver}-manilaclient >= 1.23.0
 %if 0%{rhosp} == 0
 Requires:       python%{pyver}-glareclient >= 0.3.0
 Requires:       python%{pyver}-muranoclient >= 0.8.2
 Requires:       python%{pyver}-senlinclient >= 1.1.0
 Requires:       python%{pyver}-tackerclient >= 0.8.0
+Requires:       python%{pyver}-vitrageclient >= 2.0.0
 %endif
 Requires:       python%{pyver}-troveclient >= 2.2.0
 
