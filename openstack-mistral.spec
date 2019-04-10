@@ -1,4 +1,3 @@
-%global milestone .0rc2
 # Macros for py2/py3 compatibility
 %if 0%{?fedora} || 0%{?rhel} > 7
 %global pyver %{python3_pkgversion}
@@ -28,13 +27,11 @@ execution order, parallelism, synchronization and high availability.
 
 Name:           openstack-mistral
 Version:        8.0.0
-Release:        0.2%{?milestone}%{?dist}
+Release:        1%{?dist}
 Summary:        Task Orchestration and Scheduling service for OpenStack cloud
 License:        ASL 2.0
 URL:            https://launchpad.net/mistral
 Source0:        https://tarballs.openstack.org/%{service}/%{service}-%{upstream_version}.tar.gz
-#
-# patches_base=8.0.0.0rc2
 #
 
 Source1:        mistral.logrotate
@@ -438,6 +435,9 @@ exit 0
 %{pyver_sitelib}/mistral/tests
 
 %changelog
+* Wed Apr 10 2019 RDO <dev@lists.rdoproject.org> 8.0.0-1
+- Update to 8.0.0
+
 * Thu Apr 04 2019 RDO <dev@lists.rdoproject.org> 8.0.0-0.2.0rc1
 - Update to 8.0.0.0rc2
 
