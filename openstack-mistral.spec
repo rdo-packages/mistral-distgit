@@ -290,8 +290,9 @@ oslo-config-generator-%{pyver} --config-file tools/config/config-generator.mistr
 
 
 %if 0%{?with_doc}
+# FIXME(jcapitao) Remove -W until we move to centos8
 export PYTHONPATH=.
-sphinx-build-%{pyver} -W -b html doc/source doc/build/html
+sphinx-build-%{pyver} -b html doc/source doc/build/html
 rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
 
