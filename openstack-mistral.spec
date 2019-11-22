@@ -26,7 +26,7 @@ description to Mistral so that it takes care of state management, correct \
 execution order, parallelism, synchronization and high availability.
 
 Name:           openstack-mistral
-Version:        8.0.0
+Version:        8.1.0
 Release:        1%{?dist}
 Summary:        Task Orchestration and Scheduling service for OpenStack cloud
 License:        ASL 2.0
@@ -435,6 +435,9 @@ exit 0
 %{pyver_sitelib}/mistral/tests
 
 %changelog
+* Fri Nov 22 2019 RDO <dev@lists.rdoproject.org> 8.1.0-1
+- Update to 8.1.0
+
 * Wed Apr 10 2019 RDO <dev@lists.rdoproject.org> 8.0.0-1
 - Update to 8.0.0
 
