@@ -326,13 +326,6 @@ chmod +x %{buildroot}/usr/bin/mistral*
 pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}/usr/bin/mistral-db-sync
 %endif
 
-install -p -D -m 644 ./mistral/actions/openstack/mapping.json %{buildroot}%{pyver_sitelib}/%{service}/actions/openstack/mapping.json
-install -p -D -m 644 ./mistral/db/sqlalchemy/migration/alembic.ini %{buildroot}%{pyver_sitelib}/%{service}/db/sqlalchemy/migration/alembic.ini
-mkdir -p %{buildroot}/%{pyver_sitelib}/%{service}/resources/workflows/
-mkdir -p %{buildroot}/%{pyver_sitelib}/%{service}/resources/actions/
-install -p -D -m 644 ./mistral/resources/workflows/* %{buildroot}/%{pyver_sitelib}/%{service}/resources/workflows/
-install -p -D -m 644 ./mistral/resources/actions/* %{buildroot}/%{pyver_sitelib}/%{service}/resources/actions/
-
 %pre common
 USERNAME=mistral
 GROUPNAME=$USERNAME
