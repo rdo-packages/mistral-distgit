@@ -116,6 +116,7 @@ Requires:       python%{pyver}-mistral-lib >= 1.2.0
 Requires:       python%{pyver}-designateclient >= 2.7.0
 Requires:       python%{pyver}-magnumclient >= 2.1.0
 Requires:       python%{pyver}-manilaclient >= 1.23.0
+Requires:       python%{pyver}-mistral-extra >= 10.0.0
 %if 0%{rhosp} == 0
 Requires:       python%{pyver}-glareclient >= 0.3.0
 Requires:       python%{pyver}-muranoclient >= 0.8.2
