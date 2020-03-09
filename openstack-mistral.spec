@@ -124,6 +124,7 @@ Requires:       python%{pyver}-tackerclient >= 0.8.0
 Requires:       python%{pyver}-vitrageclient >= 2.0.0
 %endif
 Requires:       python%{pyver}-troveclient >= 2.2.0
+Requires:       python%{pyver}-mistral-extra
 
 # Handle python2 exceptions
 %if %{pyver} == 2
