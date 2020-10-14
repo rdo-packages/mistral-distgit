@@ -1,4 +1,3 @@
-%global milestone .0rc1
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
 %global sources_gpg_sign 0x2426b928085a020d8a90d0d879ab7008d0896c8a
 
@@ -18,13 +17,11 @@ execution order, parallelism, synchronization and high availability.
 
 Name:           openstack-mistral
 Version:        11.0.0
-Release:        0.1%{?milestone}%{?dist}
+Release:        1%{?dist}
 Summary:        Task Orchestration and Scheduling service for OpenStack cloud
 License:        ASL 2.0
 URL:            https://launchpad.net/mistral
 Source0:        https://tarballs.openstack.org/%{service}/%{service}-%{upstream_version}.tar.gz
-#
-# patches_base=11.0.0.0rc1
 #
 
 Source1:        mistral.logrotate
@@ -394,7 +391,8 @@ exit 0
 %{python3_sitelib}/mistral/tests
 
 %changelog
-* Wed Oct 14 2020 Joel Capitao <jcapitao@redhat.com> 11.0.0-0.1.0rc1
+* Wed Oct 14 2020 RDO <dev@lists.rdoproject.org> 11.0.0-1
+- Update to 11.0.0
 - Enable sources tarball validation using GPG signature.
 
 * Fri Sep 25 2020 RDO <dev@lists.rdoproject.org> 11.0.0-0.1.0rc1
