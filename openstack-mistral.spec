@@ -43,7 +43,7 @@ BuildArch:      noarch
 BuildRequires:  /usr/bin/gpgv2
 %endif
 
-BuildRequires:  git
+BuildRequires:  git-core
 BuildRequires:  openstack-macros
 BuildRequires:  python3-devel
 BuildRequires:  python3-oslo-config >= 2:5.2.0
