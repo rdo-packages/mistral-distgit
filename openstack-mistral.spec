@@ -46,7 +46,7 @@ BuildRequires:  /usr/bin/gpgv2
 BuildRequires:  git-core
 BuildRequires:  openstack-macros
 BuildRequires:  python3-devel
-BuildRequires:  python3-oslo-config >= 2:5.2.0
+BuildRequires:  python3-oslo-config >= 2:6.8.0
 BuildRequires:  python3-pbr >= 2.0.0
 BuildRequires:  systemd
 
@@ -61,41 +61,39 @@ Summary:        Mistral Python libraries
 %{?python_provide:%python_provide python3-%{service}}
 
 Requires:       python3-alembic >= 0.9.6
-Requires:       python3-babel >= 2.3.4
 Requires:       python3-croniter >= 0.3.4
 Requires:       python3-cachetools >= 2.0.0
-Requires:       python3-eventlet >= 0.20.0
-Requires:       python3-jinja2
-Requires:       python3-jsonschema >= 2.6.0
-Requires:       python3-kombu
+Requires:       python3-eventlet >= 0.26.0
+Requires:       python3-jinja2 >= 2.10
+Requires:       python3-jsonschema >= 3.2.0
+Requires:       python3-kombu >= 4.6.1
 Requires:       python3-paramiko >= 2.4.1
 Requires:       python3-pbr >= 2.0.0
 Requires:       python3-pecan >= 1.2.1
-Requires:       python3-requests >= 2.14.2
-Requires:       python3-six >= 1.10.0
+Requires:       python3-requests >= 2.18.0
 Requires:       python3-sqlalchemy >= 1.2.5
 Requires:       python3-tenacity >= 5.0.1
 Requires:       python3-wsme >= 0.8.0
 Requires:       python3-yaql >= 1.1.3
-Requires:       python3-dogpile-cache
+Requires:       python3-dogpile-cache >= 0.6.2
 # OpenStack dependencies
 Requires:       python3-oslo-concurrency >= 3.26.0
-Requires:       python3-oslo-config >= 2:5.2.0
-Requires:       python3-oslo-context >= 2.20.0
+Requires:       python3-oslo-config >= 2:6.8.0
+Requires:       python3-oslo-context >= 2.22.0
 Requires:       python3-oslo-db >= 4.40.0
 Requires:       python3-oslo-i18n >= 3.15.3
 Requires:       python3-oslo-middleware >= 3.31.0
 Requires:       python3-oslo-messaging >= 5.29.0
-Requires:       python3-oslo-utils >= 3.37.0
+Requires:       python3-oslo-utils >= 4.0.0
 Requires:       python3-oslo-log >= 3.36.0
 Requires:       python3-oslo-serialization >= 2.21.1
-Requires:       python3-oslo-service >= 1.24.0
-Requires:       python3-oslo-policy >= 1.30.0
+Requires:       python3-oslo-service >= 2.1.0
+Requires:       python3-oslo-policy >= 3.6.0
 Requires:       python3-osprofiler >= 1.4.0
 Requires:       python3-stevedore >= 1.20.0
 Requires:       python3-tooz >= 1.58.0
 Requires:       python3-keystonemiddleware >= 4.18.0
-Requires:       python3-mistral-lib >= 1.4.0
+Requires:       python3-mistral-lib >= 2.3.0
 Requires:       python3-mistral-extra >= 10.0.0
 
 Requires:       python3-jwt >= 1.5
