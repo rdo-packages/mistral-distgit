@@ -1,0 +1,10 @@
+Code-Review+2: Alex Schultz <aschultz@next-development.com>
+Code-Review+2: Alfredo Moralejo <amoralej@redhat.com>
+Code-Review+2: Yatin Karel <ykarel@redhat.com>
+Workflow+1: Alex Schultz <aschultz@next-development.com>
+Verified+2: Zuul CI <zuul@review.rdoproject.org>
+Submitted-by: Zuul CI <zuul@review.rdoproject.org>
+Submitted-at: Thu, 29 Jul 2021 15:59:00 +0000
+Reviewed-on: https://review.rdoproject.org/r/c/openstack/mistral-distgit/+/34750
+Project: openstack/mistral-distgit
+Branch: refs/heads/train-rdo
