@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e3a79305_403b80f1",
+        "filename": "openstack-mistral.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 303
+      },
+      "writtenOn": "2021-07-29T15:17:00Z",
+      "side": 1,
+      "message": "You need to add it up here too",
+      "revId": "5a22b7c8dbff40045fbe2ad15d3410e1439b6d0e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    }
+  ]
+}
