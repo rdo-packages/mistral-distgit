@@ -73,6 +73,7 @@ Requires:       python%{pyver}-iso8601 >= 0.1.9
 Requires:       python%{pyver}-jinja2
 Requires:       python%{pyver}-jsonschema >= 2.6.0
 Requires:       python%{pyver}-kombu
+Requires:       python%{pyver}-oauthlib
 Requires:       python%{pyver}-paramiko >= 2.0.0
 Requires:       python%{pyver}-pbr >= 2.0.0
 Requires:       python%{pyver}-pecan >= 1.2.1
@@ -257,6 +258,7 @@ BuildRequires:  python%{pyver}-osprofiler
 BuildRequires:  python%{pyver}-pecan
 BuildRequires:  python%{pyver}-tooz
 BuildRequires:  python%{pyver}-yaql
+BuildRequires:  python%{pyver}-oauthlib
 BuildRequires:  openstack-macros
 
 # Handle python2 exceptions
