@@ -257,6 +257,7 @@ BuildRequires:  python%{pyver}-osprofiler
 BuildRequires:  python%{pyver}-pecan
 BuildRequires:  python%{pyver}-tooz
 BuildRequires:  python%{pyver}-yaql
+BuildRequires:  python%{pyver}-oauthlib
 BuildRequires:  openstack-macros
 
 # Handle python2 exceptions
