@@ -74,6 +74,7 @@ Requires:       python3-pbr >= 2.0.0
 Requires:       python3-pecan >= 1.2.1
 Requires:       python3-requests >= 2.18.0
 Requires:       python3-sqlalchemy >= 1.2.5
+Requires:       python3-sqlalchemy < 1.4.0
 Requires:       python3-tenacity >= 5.0.1
 Requires:       python3-wsme >= 0.8.0
 Requires:       python3-yaql >= 1.1.3
