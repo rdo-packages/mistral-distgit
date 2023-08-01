@@ -2,6 +2,12 @@
 %global sources_gpg_sign 0x2426b928085a020d8a90d0d879ab7008d0896c8a
 
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+# we are excluding some BRs from automatic generator
+%global excluded_brs doc8 bandit pre-commit hacking flake8-import-order os-api-ref unittest2
+# Exclude sphinx from BRs if docs are disabled
+%if ! 0%{?with_doc}
+%global excluded_brs %{excluded_brs} sphinx openstackdocstheme
+%endif
 %global service mistral
 %global rhosp 0
 
@@ -19,7 +25,7 @@ Name:           openstack-mistral
 Version:        XXX
 Release:        XXX
 Summary:        Task Orchestration and Scheduling service for OpenStack cloud
-License:        ASL 2.0
+License:        Apache-2.0
 URL:            https://launchpad.net/mistral
 Source0:        https://tarballs.openstack.org/%{service}/%{service}-%{upstream_version}.tar.gz
 Source1:        mistral.logrotate
@@ -46,11 +52,8 @@ BuildRequires:  /usr/bin/gpgv2
 BuildRequires:  git-core
 BuildRequires:  openstack-macros
 BuildRequires:  python3-devel
-BuildRequires:  python3-oslo-config >= 2:6.8.0
-BuildRequires:  python3-pbr >= 2.0.0
+BuildRequires:  pyproject-rpm-macros
 BuildRequires:  systemd
-
-BuildRequires:  /usr/bin/pathfix.py
 
 %description
 %{summary}
@@ -58,47 +61,6 @@ BuildRequires:  /usr/bin/pathfix.py
 
 %package -n     python3-%{service}
 Summary:        Mistral Python libraries
-%{?python_provide:%python_provide python3-%{service}}
-
-Requires:       python3-alembic >= 0.9.6
-Requires:       python3-croniter >= 0.3.4
-Requires:       python3-cachetools >= 2.0.0
-Requires:       python3-eventlet >= 0.26.0
-Requires:       python3-jinja2 >= 2.10
-Requires:       python3-jsonschema >= 3.2.0
-Requires:       python3-kombu >= 4.6.1
-Requires:       python3-paramiko >= 2.4.1
-Requires:       python3-pbr >= 2.0.0
-Requires:       python3-pecan >= 1.2.1
-Requires:       python3-requests >= 2.18.0
-Requires:       python3-sqlalchemy >= 1.2.5
-Requires:       python3-tenacity >= 5.0.1
-Requires:       python3-wsme >= 0.8.0
-Requires:       python3-yaql >= 1.1.3
-Requires:       python3-dogpile-cache >= 0.6.2
-# OpenStack dependencies
-Requires:       python3-oslo-concurrency >= 3.26.0
-Requires:       python3-oslo-config >= 2:6.8.0
-Requires:       python3-oslo-context >= 2.22.0
-Requires:       python3-oslo-db >= 4.40.0
-Requires:       python3-oslo-i18n >= 3.15.3
-Requires:       python3-oslo-middleware >= 3.31.0
-Requires:       python3-oslo-messaging >= 14.1.0
-Requires:       python3-oslo-utils >= 4.0.0
-Requires:       python3-oslo-log >= 3.36.0
-Requires:       python3-oslo-serialization >= 2.21.1
-Requires:       python3-oslo-service >= 2.1.0
-Requires:       python3-oslo-policy >= 3.6.0
-Requires:       python3-osprofiler >= 1.4.0
-Requires:       python3-stevedore >= 1.20.0
-Requires:       python3-tooz >= 1.58.0
-Requires:       python3-keystonemiddleware >= 4.18.0
-Requires:       python3-mistral-lib >= 2.3.0
-Requires:       python3-mistral-extra >= 10.0.0
-
-Requires:       python3-jwt >= 1.5
-Requires:       python3-networkx >= 2.3
-Requires:       python3-PyYAML >= 3.10
 
 %description -n python3-%{service}
 %{common_desc}
@@ -109,11 +71,8 @@ This package contains the Python libraries.
 Summary: Components common for OpenStack Mistral
 
 Requires:       python3-%{service} = %{version}-%{release}
-%if 0%{?rhel} && 0%{?rhel} < 8
-%{?systemd_requires}
-%else
-%{?systemd_ordering} # does not exist on EL7
-%endif
+
+%{?systemd_ordering}
 
 %description    common
 %{common_desc}
@@ -187,7 +146,6 @@ an all-in-one process.
 
 %package -n python3-mistral-tests
 Summary:        Mistral tests
-%{?python_provide:%python_provide python3-mistral-tests}
 Requires:       %{name}-common = %{version}-%{release}
 Requires:       python3-mock
 Requires:       python3-yaml >= 5.1
@@ -201,29 +159,7 @@ This package contains the mistral test files.
 %package        doc
 Summary:        Documentation for OpenStack Workflow Service
 
-BuildRequires:  python3-sphinx
-BuildRequires:  python3-openstackdocstheme
-BuildRequires:  python3-sphinxcontrib-pecanwsme
-BuildRequires:  python3-wsme
-BuildRequires:  python3-croniter
-BuildRequires:  python3-eventlet
-BuildRequires:  python3-jsonschema
-BuildRequires:  python3-keystoneclient
-BuildRequires:  python3-keystonemiddleware
-BuildRequires:  python3-mistral-lib
-BuildRequires:  python3-oslo-db
-BuildRequires:  python3-oslo-log
-BuildRequires:  python3-oslo-messaging
-BuildRequires:  python3-oslo-policy
-BuildRequires:  python3-osprofiler
-BuildRequires:  python3-pecan
-BuildRequires:  python3-tooz
-BuildRequires:  python3-yaql
-BuildRequires:  openstack-macros
-
-BuildRequires:  python3-sphinxcontrib-httpdomain
-BuildRequires:  python3-networkx
-
+BuildRequires: python3-openstackdocstheme
 
 %description    doc
 OpenStack Mistral documentation.
@@ -240,21 +176,46 @@ This package contains the documentation.
 
 sed -i '1i #!/usr/bin/python' tools/sync_db.py
 
-%py_req_cleanup
+sed -i /^[[:space:]]*-c{env:.*_CONSTRAINTS_FILE.*/d tox.ini
+sed -i "s/^deps = -c{env:.*_CONSTRAINTS_FILE.*/deps =/" tox.ini
+sed -i /^minversion.*/d tox.ini
+sed -i /^requires.*virtualenv.*/d tox.ini
+
+# py_mini_racer is an optional requirement
+sed -i '/.*py_mini_racer.*/d' tox.ini
+
+# not running linters
+rm -f mistral/tests/unit/hacking/test_checks.py
+
+# Exclude some bad-known BRs
+for pkg in %{excluded_brs}; do
+  for reqfile in doc/requirements.txt test-requirements.txt; do
+    if [ -f $reqfile ]; then
+      sed -i /^${pkg}.*/d $reqfile
+    fi
+  done
+done
+
+# Automatic BR generation
+%generate_buildrequires
+%if 0%{?with_doc}
+  %pyproject_buildrequires -t -e %{default_toxenv},docs
+%else
+  %pyproject_buildrequires -t -e %{default_toxenv}
+%endif
 
 %build
-%{py3_build}
+%pyproject_wheel
+
+%install
+%pyproject_install
+
+export PYTHONPATH=%{buildroot}/%{python3_sitelib}
 oslo-config-generator --config-file tools/config/config-generator.mistral.conf \
                       --output-file etc/mistral.conf.sample
 
-%install
-%{py3_install}
-
-
 %if 0%{?with_doc}
-# FIXME(jcapitao) Remove -W until we move to centos8
-export PYTHONPATH=.
-sphinx-build -b html doc/source doc/build/html
+%tox -e docs
 rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
 
@@ -284,7 +245,7 @@ install -p -D -m 640 tools/sync_db.py \
 chmod +x %{buildroot}/usr/bin/mistral*
 
 # Fix shebangs for Python 3-only distros
-pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}/usr/bin/mistral-db-sync
+%py3_shebang_fix %{buildroot}/usr/bin/mistral-db-sync
 
 %pre common
 USERNAME=mistral
@@ -343,6 +304,9 @@ exit 0
 %postun all
 %systemd_postun_with_restart openstack-mistral-all.service
 
+%check
+%tox -e %{default_toxenv}
+
 %files api
 %config(noreplace) %attr(-, root, root) %{_unitdir}/openstack-mistral-api.service
 
@@ -379,7 +343,7 @@ exit 0
 
 %files -n python3-%{service}
 %{python3_sitelib}/%{service}
-%{python3_sitelib}/%{service}-*.egg-info
+%{python3_sitelib}/%{service}-*.dist-info
 %exclude %{python3_sitelib}/mistral/tests
 
 %files -n python3-mistral-tests
