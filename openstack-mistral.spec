@@ -62,6 +62,8 @@ BuildRequires:  systemd
 %package -n     python3-%{service}
 Summary:        Mistral Python libraries
 
+Requires:    python3-mistral-extra >= 10.0.0
+
 %description -n python3-%{service}
 %{common_desc}
 
