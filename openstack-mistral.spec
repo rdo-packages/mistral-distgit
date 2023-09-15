@@ -1,5 +1,6 @@
+%global milestone .0rc1
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
-%global sources_gpg_sign 0x2426b928085a020d8a90d0d879ab7008d0896c8a
+%global sources_gpg_sign 0x815AFEC729392386480E076DCC0DFE2D21C023C9
 
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 # we are excluding some BRs from automatic generator
@@ -22,12 +23,16 @@ description to Mistral so that it takes care of state management, correct \
 execution order, parallelism, synchronization and high availability.
 
 Name:           openstack-mistral
-Version:        XXX
-Release:        XXX
+Version:        17.0.0
+Release:        0.1%{?milestone}%{?dist}
 Summary:        Task Orchestration and Scheduling service for OpenStack cloud
 License:        Apache-2.0
 URL:            https://launchpad.net/mistral
 Source0:        https://tarballs.openstack.org/%{service}/%{service}-%{upstream_version}.tar.gz
+#
+# patches_base=17.0.0.0rc1
+#
+
 Source1:        mistral.logrotate
 # Systemd scripts
 Source10:       openstack-mistral-api.service
@@ -353,4 +358,7 @@ exit 0
 %{python3_sitelib}/mistral/tests
 
 %changelog
+* Fri Sep 15 2023 RDO <dev@lists.rdoproject.org> 17.0.0-0.1.0rc1
+- Update to 17.0.0.0rc1
+
 
