@@ -240,8 +240,6 @@ install -p -D -m 640 etc/logging.conf.sample \
                      %{buildroot}%{_sysconfdir}/mistral/logging.conf
 install -p -D -m 640 etc/wf_trace_logging.conf.sample \
                      %{buildroot}%{_sysconfdir}/mistral/wf_trace_logging.conf
-install -p -D -m 640 etc/policy.json \
-                     %{buildroot}%{_sysconfdir}/mistral/policy.json
 install -p -D -m 640 tools/sync_db.py \
                      %{buildroot}/usr/bin/mistral-db-sync
 chmod +x %{buildroot}/usr/bin/mistral*
