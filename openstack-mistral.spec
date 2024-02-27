@@ -1,5 +1,5 @@
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
-%global sources_gpg_sign 0xa63ea142678138d1bb15f2e303bdfd64dd164087
+%global sources_gpg_sign 0x2ef3fe0ec2b075ab7458b5f8b702b20b13df2318
 
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 %global service mistral
@@ -16,7 +16,7 @@ description to Mistral so that it takes care of state management, correct \
 execution order, parallelism, synchronization and high availability.
 
 Name:           openstack-mistral
-Version:        15.0.0
+Version:        15.0.1
 Release:        1%{?dist}
 Summary:        Task Orchestration and Scheduling service for OpenStack cloud
 License:        ASL 2.0
@@ -389,6 +389,9 @@ exit 0
 %{python3_sitelib}/mistral/tests
 
 %changelog
+* Tue Feb 27 2024 RDO <dev@lists.rdoproject.org> 15.0.1-1
+- Update to 15.0.1
+
 * Wed Oct 05 2022 RDO <dev@lists.rdoproject.org> 15.0.0-1
 - Update to 15.0.0
 
