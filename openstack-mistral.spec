@@ -352,3 +352,4 @@ exit 0
 
 %changelog
 
+# REMOVEME: error caused by commit https://opendev.org/openstack/mistral/commit/288da4d5b0911fc8a3424fc86944b5a6d5ed8cc1
