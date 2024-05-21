@@ -17,7 +17,7 @@ execution order, parallelism, synchronization and high availability.
 
 Name:           openstack-mistral
 Version:        16.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Task Orchestration and Scheduling service for OpenStack cloud
 License:        ASL 2.0
 URL:            https://launchpad.net/mistral
@@ -66,7 +66,7 @@ Requires:       python3-alembic >= 0.9.6
 Requires:       python3-croniter >= 0.3.4
 Requires:       python3-cachetools >= 2.0.0
 Requires:       python3-eventlet >= 0.26.0
-Requires:       python3-jinja2 >= 2.10
+Requires:       python3-jinja2 >= 3.0.0
 Requires:       python3-jsonschema >= 3.2.0
 Requires:       python3-kombu >= 4.6.1
 Requires:       python3-paramiko >= 2.4.1
@@ -389,6 +389,9 @@ exit 0
 %{python3_sitelib}/mistral/tests
 
 %changelog
+* Tue May 21 2024 Tobias Urdin <tobias.urdin@binero.com> 16.0.0-2
+- Fix jinja2 requires
+
 * Fri Mar 31 2023 RDO <dev@lists.rdoproject.org> 16.0.0-1
 - Update to 16.0.0
 
