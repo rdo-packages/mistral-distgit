@@ -149,9 +149,6 @@ an all-in-one process.
 %package -n python3-mistral-tests
 Summary:        Mistral tests
 Requires:       %{name}-common = %{version}-%{release}
-Requires:       python3-mock
-Requires:       python3-yaml >= 5.1
-Requires:       python3-zake >= 0.1.6
 
 %description -n python3-mistral-tests
 This package contains the mistral test files.
