@@ -179,6 +179,7 @@ sed -i /^[[:space:]]*-c{env:.*_CONSTRAINTS_FILE.*/d tox.ini
 sed -i "s/^deps = -c{env:.*_CONSTRAINTS_FILE.*/deps =/" tox.ini
 sed -i /^minversion.*/d tox.ini
 sed -i /^requires.*virtualenv.*/d tox.ini
+sed -i /^[[:space:]]*LC_ALL.*/d tox.ini
 
 # py_mini_racer is an optional requirement
 sed -i '/.*py_mini_racer.*/d' tox.ini
