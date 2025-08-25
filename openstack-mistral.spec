@@ -22,7 +22,7 @@ description to Mistral so that it takes care of state management, correct \
 execution order, parallelism, synchronization and high availability.
 
 Name:           openstack-mistral
-Version:        20.0.0
+Version:        20.1.0
 Release:        1%{?dist}
 Summary:        Task Orchestration and Scheduling service for OpenStack cloud
 License:        Apache-2.0
@@ -351,6 +351,9 @@ exit 0
 %{python3_sitelib}/mistral/tests
 
 %changelog
+* Mon Aug 25 2025 RDO <dev@lists.rdoproject.org> 20.1.0-1
+- Update to 20.1.0
+
 * Wed Apr 02 2025 RDO <dev@lists.rdoproject.org> 20.0.0-1
 - Update to 20.0.0
 
