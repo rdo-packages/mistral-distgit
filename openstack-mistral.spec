@@ -58,7 +58,6 @@ BuildRequires:  systemd
 %description
 %{summary}
 
-
 %package -n     python3-%{service}
 Summary:        Mistral Python libraries
 
