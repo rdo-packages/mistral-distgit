@@ -1,5 +1,5 @@
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
-%global sources_gpg_sign 0xf8675126e2411e7748dd46662fc2093e4682645f
+%global sources_gpg_sign 0x22284f69d9eccdf3df7819791c711af193ff8e54
 
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 # we are excluding some BRs from automatic generator
@@ -22,7 +22,7 @@ description to Mistral so that it takes care of state management, correct \
 execution order, parallelism, synchronization and high availability.
 
 Name:           openstack-mistral
-Version:        19.0.0
+Version:        19.1.1
 Release:        1%{?dist}
 Summary:        Task Orchestration and Scheduling service for OpenStack cloud
 License:        Apache-2.0
@@ -353,6 +353,9 @@ exit 0
 %{python3_sitelib}/mistral/tests
 
 %changelog
+* Mon Jan 26 2026 RDO <dev@lists.rdoproject.org> 19.1.1-1
+- Update to 19.1.1
+
 * Wed Oct 02 2024 RDO <dev@lists.rdoproject.org> 19.0.0-1
 - Update to 19.0.0
 
